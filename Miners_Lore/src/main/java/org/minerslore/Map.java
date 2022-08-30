@@ -11,10 +11,15 @@ import java.util.stream.Collectors;
 
 public class Map {
     private static List<ArrayList<Character>> map = new ArrayList<>();
+    private static List<ArrayList<Character>> overLay = new ArrayList<>();
     private static ArrayList<Actor> actors = new ArrayList<Actor>();
 
     public Map() {
+
         map=fetchStarterMap();
+        Miner miner = new Miner();
+        miner.Position=new int[] {0,0};
+        actors.add(miner);
     }
 
     public static List<ArrayList<Character>>  fetchStarterMap() {
@@ -31,6 +36,7 @@ public class Map {
                 List<Character> list = (ArrayList<Character>) line.chars().mapToObj((i) -> Character.valueOf((char) i)).collect(Collectors.toList());
                 map_Original.add((ArrayList<Character>) list);
 
+
             }
             in.close();
         } catch (IOException e) {
@@ -42,6 +48,10 @@ public class Map {
     }
 
     public static void displayMap(){
+        for (Actor act:actors){
+            int[] XY=act.Position;
+
+        }
         for (ArrayList<Character> each : map) {
 
             for (Character ea: each) {
@@ -51,6 +61,15 @@ public class Map {
             }
             System.out.println("");
         }
+//        for (ArrayList<Character> each : map) {
+//
+//            for (Character ea: each) {
+//
+//                System.out.print(ea);
+//
+//            }
+//            System.out.println("");
+//        }
 
     }
 
@@ -60,6 +79,10 @@ public class Map {
     }
 
     public static void updateMap(){
+
+    }
+
+    public static void updateOverLay(){
 
     }
 
