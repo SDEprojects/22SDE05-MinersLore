@@ -1,10 +1,12 @@
-package org.minerslore;
+package org.minerslore.Actors;
+
+import org.minerslore.Actors.Actor;
 
 import java.awt.*;
 
-public class Miner extends Actor{
+public class Miner extends Actor {
     public Miner() {
-        symbol='M';
+        super('M',new Point(0,0));
     }
 
 
