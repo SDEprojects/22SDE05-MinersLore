@@ -5,7 +5,7 @@ import java.util.Map;
 import java.lang.reflect.*;
 
 public class Dictionary {
-    public static void main(String[] args) throws Exception {
+    public static void dict() throws Exception {
         Map<Character, Method> playerAction = new HashMap<Character, Method>();
 
         playerAction.put('d', Dictionary.class.getMethod("dig"));
