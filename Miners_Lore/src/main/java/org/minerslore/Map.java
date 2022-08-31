@@ -1,5 +1,6 @@
 package org.minerslore;
 
+import java.awt.*;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -11,15 +12,37 @@ import java.util.stream.Collectors;
 
 public class Map {
     private static List<ArrayList<Character>> map = new ArrayList<>();
+
     private static List<ArrayList<Character>> overLay = new ArrayList<>();
+
     private static ArrayList<Actor> actors = new ArrayList<Actor>();
 
     public Map() {
 
         map=fetchStarterMap();
-        Miner miner = new Miner();
-        miner.Position=new int[] {0,0};
-        actors.add(miner);
+        for(int i =0; i<map.size();i++){
+            ArrayList<Character> charTempList = new ArrayList<Character>();
+            Miner miner = new Miner();
+            miner.move(4, 13);
+            actors.add(miner);
+            for(int k=0 ; k < map.get(i).size();k++){
+                for (Actor act: actors){
+                    if(act.Position.equals(new Point(i,k))){
+                        charTempList.add(act.symbol);
+                        break;
+                    }
+                    else{
+                        charTempList.add('.');
+                        break;
+                    }
+                }
+            }
+            overLay.add(charTempList);
+        }
+        updateOverLay();
+
+
+
     }
 
     public static List<ArrayList<Character>>  fetchStarterMap() {
@@ -36,7 +59,6 @@ public class Map {
                 List<Character> list = (ArrayList<Character>) line.chars().mapToObj((i) -> Character.valueOf((char) i)).collect(Collectors.toList());
                 map_Original.add((ArrayList<Character>) list);
 
-
             }
             in.close();
         } catch (IOException e) {
@@ -48,28 +70,20 @@ public class Map {
     }
 
     public static void displayMap(){
-        for (Actor act:actors){
-            int[] XY=act.Position;
 
-        }
-        for (ArrayList<Character> each : map) {
+        for (int i =0; i<map.size(); i++) {
 
-            for (Character ea: each) {
-
-                System.out.print(ea);
-
+            for (int k =0; k<map.get(i).size(); k++)  {
+                if(overLay.get(i).get(k)!='.'){
+                    System.out.print(overLay.get(i).get(k));
+                }
+                else{
+                    System.out.print(map.get(i).get(k));
+                }
             }
             System.out.println("");
         }
-//        for (ArrayList<Character> each : map) {
-//
-//            for (Character ea: each) {
-//
-//                System.out.print(ea);
-//
-//            }
-//            System.out.println("");
-//        }
+
 
     }
 
@@ -83,6 +97,27 @@ public class Map {
     }
 
     public static void updateOverLay(){
+        for (ArrayList<Character> each : overLay) {
+
+            for (Character ea: each) {
+
+                System.out.print(ea);
+
+            }
+            System.out.println("");
+        }
+
+    }
+
+    public static void moveMiner(int y,int x){
+
+        Actor act= actors.get(0);
+        int prev_x=act.Position.x;
+        int prev_y=act.Position.y;
+        act.resetNeighbors();
+        act.Position.setLocation(prev_x+x,prev_y+y);
+        overLay.get(prev_x).set(prev_y,'.');
+        overLay.get(prev_x+x).set(prev_y+y,'M');
 
     }
 
