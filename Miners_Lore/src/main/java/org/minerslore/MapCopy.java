@@ -13,27 +13,23 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-public class Map {
+public class MapCopy {
     private static List<ArrayList<Character>> map = new ArrayList<>();
 
     private static List<ArrayList<Character>> overLay = new ArrayList<>();
 
-    private static ArrayList<Actor> actors = new ArrayList<>();
+    private static ArrayList<Actor> actors = new ArrayList<Actor>();
 
-
-    public Map() {
+    public MapCopy() {
 
         map=fetchStarterMap();
         for(int i =0; i<map.size();i++){
-            ArrayList<Character> charTempList = new ArrayList<>();
+            ArrayList<Character> charTempList = new ArrayList<Character>();
             Miner miner = new Miner();
             miner.move(4, 13);
             actors.add(miner);
-
-
-
             for(int k=0 ; k < map.get(i).size();k++){
-                for (Actor act : actors){
+                for (Actor act: actors){
                     if(act.Position.equals(new Point(i,k))){
                         charTempList.add(act.symbol);
                         break;
@@ -47,6 +43,9 @@ public class Map {
             overLay.add(charTempList);
         }
         updateOverLay();
+
+
+
     }
 
     public static List<ArrayList<Character>>  fetchStarterMap() {
