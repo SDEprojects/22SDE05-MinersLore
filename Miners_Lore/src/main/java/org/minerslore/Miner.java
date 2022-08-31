@@ -1,13 +1,13 @@
 package org.minerslore;
 
+import java.awt.*;
+
 public class Miner extends Actor{
     public Miner() {
-        symbol="M";
+        symbol='M';
     }
 
-    public void move(){
 
-    }
 
 
     public static void showInventory(){
@@ -21,7 +21,7 @@ public class Miner extends Actor{
 
     }
 
-    public int[] getPostion(){
+    public Point getPostion(){
         return this.Position;
     }
 }
