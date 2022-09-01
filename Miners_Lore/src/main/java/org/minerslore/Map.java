@@ -2,6 +2,7 @@ package org.minerslore;
 
 import org.minerslore.Actors.Actor;
 import org.minerslore.Actors.Miner;
+import org.minerslore.Items.Item;
 
 import java.awt.*;
 import java.io.BufferedReader;
@@ -12,117 +13,68 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Map {
-    private static List<ArrayList<Character>> map = new ArrayList<>();
-
-    private static List<ArrayList<Character>> overLay = new ArrayList<>();
-
+    private static List<ArrayList<Interact_Objects>> map = new ArrayList<>();
     private static ArrayList<Actor> actors = new ArrayList<>();
-
-
     public Map() {
 
-        map=fetchStarterMap();
-        for(int i =0; i<map.size();i++){
-            ArrayList<Character> charTempList = new ArrayList<>();
-            Miner miner = new Miner();
-            miner.move(4, 13);
-            actors.add(miner);
+        fetchStarterMap();
+        Miner miner = new Miner('M',new Point(3,3));
+        actors.add(miner);
 
-
-
-            for(int k=0 ; k < map.get(i).size();k++){
-                for (Actor act : actors){
-                    if(act.Position.equals(new Point(i,k))){
-                        charTempList.add(act.symbol);
-                        break;
-                    }
-                    else{
-                        charTempList.add('.');
-                        break;
-                    }
-                }
-            }
-            overLay.add(charTempList);
-        }
-        updateOverLay();
+        map.get(miner.getY()).set(miner.getX(),miner);
     }
-
-    public static List<ArrayList<Character>>  fetchStarterMap() {
-
-        List<ArrayList<Character>> map_Original = new ArrayList<>();
-
-
+    public static void  fetchStarterMap() {
         try {
             BufferedReader in = new BufferedReader(
                     new InputStreamReader(Objects.requireNonNull(Main.class.getClassLoader().getResourceAsStream("Map.txt")),
                             StandardCharsets.UTF_8));
-            String line;
-            while ((line = in.readLine()) != null) {
-                List<Character> list = (ArrayList<Character>) line.chars().mapToObj((i) -> Character.valueOf((char) i)).collect(Collectors.toList());
-                map_Original.add((ArrayList<Character>) list);
+            String row;
+            int y=0;
+            while ((row = in.readLine()) != null) {
 
+                ArrayList<Interact_Objects> mapObjectList = new ArrayList<Interact_Objects>();
+                List<Character> charList = row.chars().mapToObj((i) -> Character.valueOf((char)i)).collect(Collectors.toList());
+
+                final int yy=y;
+
+                IntStream.range(0, charList.size()).forEach(x-> mapObjectList.add(new Item(charList.get(x),new Point(x, yy))));
+                map.add(mapObjectList);
+                y++;
             }
             in.close();
         } catch (IOException e) {
             throw new RuntimeException("Caught exception reading resource " + "Maps", e);
         }
-
-
-        return map_Original;
     }
 
-    public static void displayMap(){
+    public static void displayMap() {
+        Actor act=actors.get(0);
+        System.out.println(act.Position);
 
-        for (int i =0; i<map.size(); i++) {
-
-            for (int k =0; k<map.get(i).size(); k++)  {
-                if(overLay.get(i).get(k)!='.'){
-                    System.out.print(overLay.get(i).get(k));
-                }
-                else{
-                    System.out.print(map.get(i).get(k));
-                }
-            }
-            System.out.println("");
+        map.get(act.getY()).set(act.getX(),act);
+        for(ArrayList<Interact_Objects> row : map){
+            row.forEach(item-> System.out.print(item.toString().replace(',',' ')));
+            System.out.println();
         }
-
-
     }
 
-    public static void addActor(Actor actor){
-        actors.add(actor);
+    public static void moveMiner(String Direction){
 
-    }
+        if(Direction.equalsIgnoreCase("N")){
 
-    public static void updateMap(){
-
-    }
-
-    public static void updateOverLay(){
-        for (ArrayList<Character> each : overLay) {
-
-            for (Character ea: each) {
-
-                System.out.print(ea);
-
+            (actors.get(0)).moveNorth();
             }
-            System.out.println("");
-        }
-
+            else if(Direction.equalsIgnoreCase("S")){
+            actors.get(0).moveSouth();
+                }
+            else if(Direction.equalsIgnoreCase("W")){
+            actors.get(0).moveWest();
+            }
+            else if(Direction.equalsIgnoreCase("E")){
+            actors.get(0).moveEast();
+            }
     }
-
-    public static void moveMiner(int y,int x){
-
-        Actor act= actors.get(0);
-        int prev_x=act.Position.x;
-        int prev_y=act.Position.y;
-        act.resetNeighbors();
-        act.Position.setLocation(prev_x+x,prev_y+y);
-        overLay.get(prev_x).set(prev_y,'.');
-        overLay.get(prev_x+x).set(prev_y+y,'M');
-
-    }
-
 }
