@@ -9,6 +9,8 @@ public class Item extends Interact_Objects {
     String Attributes;
 
     public Item(char symbol, Point location) {
+
+
         super(symbol, location);
     }
 }

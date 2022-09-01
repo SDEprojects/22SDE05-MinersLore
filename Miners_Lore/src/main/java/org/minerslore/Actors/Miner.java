@@ -5,12 +5,11 @@ import org.minerslore.Actors.Actor;
 import java.awt.*;
 
 public class Miner extends Actor {
-    public Miner() {
-        super('M',new Point(0,0));
+
+
+    public Miner(char symbol, Point location) {
+        super(symbol, location);
     }
-
-
-
 
     public static void showInventory(){
 
