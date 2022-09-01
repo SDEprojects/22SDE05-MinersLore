@@ -3,6 +3,7 @@ package org.minerslore;
 import org.minerslore.Actors.Actor;
 import org.minerslore.Actors.Miner;
 import org.minerslore.Items.Item;
+import org.minerslore.Items.Wall;
 
 import java.awt.*;
 import java.io.BufferedReader;
@@ -10,6 +11,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -33,14 +35,22 @@ public class Map {
                             StandardCharsets.UTF_8));
             String row;
             int y=0;
+
+
+
             while ((row = in.readLine()) != null) {
 
                 ArrayList<Interact_Objects> mapObjectList = new ArrayList<Interact_Objects>();
                 List<Character> charList = row.chars().mapToObj((i) -> Character.valueOf((char)i)).collect(Collectors.toList());
 
-                final int yy=y;
+                for (int x = 0; x < charList.size(); x++) {
+                    if (charList.get(x) == '=') {
+                        mapObjectList.add(new Wall(new Point(x, y)));
+                    } else {
+                        mapObjectList.add(new Item(charList.get(x), new Point (x, y)));
+                    }
+                }
 
-                IntStream.range(0, charList.size()).forEach(x-> mapObjectList.add(new Item(charList.get(x),new Point(x, yy))));
                 map.add(mapObjectList);
                 y++;
             }
