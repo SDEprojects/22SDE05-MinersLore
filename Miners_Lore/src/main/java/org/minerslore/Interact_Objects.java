@@ -6,6 +6,7 @@ public abstract class Interact_Objects {
     char current_symbol;
     Point position;
 
+
     public Interact_Objects(char symbol, Point location) {
         this.current_symbol = symbol;
         this.original_symbol = symbol;

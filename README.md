@@ -12,7 +12,7 @@ Will it be the miner or the flesh eating monster? Try this
 fun-filled adventure game for yourself to find out.
 
 ## **Contributors**
-James, Jacuqes and Kita
+James, Jacques and Kita
 
 ## **Prerequisites**
 The latest version of Java installed
