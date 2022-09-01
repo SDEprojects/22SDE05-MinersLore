@@ -12,21 +12,29 @@ public abstract class Interact_Objects {
         this.position = location;
     }
 
-    public Point getPosition(){
-        return this.position;
+    public int getX(){
+        return this.position.x;
+    };
+    public int getY(){
+        return this.position.y;
     };
     public void move(int x,int y){
         this.position.setLocation(x,y);
-
-
     }
 
-    public void changeBlock(Interact_Objects block1,Interact_Objects block2,Interact_Objects block3){
+    public Interact_Objects changeBlock(Interact_Objects actionBlock){
+        return this;
 
 
     };
 
     public char getSymbol() {
+
         return this.current_symbol;
+    }
+
+    @Override
+    public String toString() {
+        return String.valueOf( current_symbol);
     }
 }
