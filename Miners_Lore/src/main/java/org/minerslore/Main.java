@@ -16,7 +16,7 @@ public class Main {
         Yaml yaml = new Yaml();
         InputStream input = new FileInputStream(file);
         java.util.Map<String, Object> obj = yaml.load(input);
-        System.out.println(obj.get("A"));
+        System.out.println(obj.get("STORY"));
 
 
         GameMap map = new GameMap();
