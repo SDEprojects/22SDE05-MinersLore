@@ -1,4 +1,14 @@
 # Compiled class file
+.idea/
+build/
+.gradle/
+
+*.iml
+
+
+.floo*
+
+.DS_Store
 *.class
 
 # Log file
