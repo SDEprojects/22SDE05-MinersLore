@@ -1,14 +1,36 @@
 package org.minerslore;
 
+import java.io.File;
+import java.io.InputStream;
+import java.util.HashMap;
 import java.util.Scanner;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Map;
+
+import org.yaml.snakeyaml.Yaml;
+
 
 public class Story {
 
+//    // Instantiating a new ObjectMapper as a YAMLFactory
+//    ObjectMapper om = new ObjectMapper(new YAMLFactory());
+//
+//    // Mapping the employee from the YAML file to the Employee class
+//    Employee employee = om.readValue(file, Employee.class);
+//
+//// Printing out the information
+//System.out.println("Employee info " + employee.toString());
+//
+//// Access the first element of the list and print it as well
+//System.out.println("Accessing first element: " + employee.getColleagues().get(0).toString());
+//    JSONObject json = new JSONObject();
     // variables
     static Scanner stringScanner = new Scanner(System.in); // Scanner that takes string input
     static Scanner intScanner = new Scanner(System.in); // Scanner that takes int input
-
-    public static void mainStory() {
+    @SuppressWarnings("unchecked")
+    public  void mainStory() {
+//
         System.out.println("\n\n" + "^^^^^^^^^^^^^^^^^^^^^^^^^^WELCOME TO MINERS LORE^^^^^^^^^^^^^^^^^^^^^^^^^^" +
                 "^^^^^^^^^^^^^^^");
         System.out.println("\n\n");
@@ -62,5 +84,11 @@ public class Story {
 
     private static void minerStory() {
     }
+//    @SuppressWarnings("unchecked")
+//    @Override
+//    public Map<String, Object> load(final String data) {
+//        return Strings.isNullOrEmpty(data) ? new LinkedHashMap<String, Object>() : (Map) new Yaml().load(data);
+//    }
+
 }
 
