@@ -11,19 +11,17 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
-public class Map {
+public class GameMap {
     private static List<ArrayList<Interact_Objects>> map = new ArrayList<>();
     private static ArrayList<Actor> actors = new ArrayList<>();
-    public Map() {
+    public GameMap() {
 
         fetchStarterMap();
-        Miner miner = new Miner('M',new Point(3,3));
+        Miner miner = new Miner('M',new Point(20,20));
         actors.add(miner);
 
         map.get(miner.getY()).set(miner.getX(),miner);
@@ -61,13 +59,31 @@ public class Map {
     }
 
     public static void displayMap() {
-        Actor act=actors.get(0);
-        System.out.println(act.Position);
+        int radius =12;
+        Actor miner=actors.get(0);
+        int actX=miner.getX();
+        int actY=miner.getY();
 
-        map.get(act.getY()).set(act.getX(),act);
-        for(ArrayList<Interact_Objects> row : map){
-            row.forEach(item-> System.out.print(item.toString().replace(',',' ')));
-            System.out.println();
+
+        map.get(miner.getY()).set(miner.getX(),miner);
+        for(int y =0; y<map.size(); y++){
+            for(int x = 0; x<map.get(y).size(); x++){
+                // ( x - Obj_X )^2+( y - Obj_Y ) ^ 2 < R^2
+                if (Math.pow(( x-actX) * .4,2)+Math.pow( y-actY,2 ) <= Math.pow( radius,2 )){
+                    System.out.print(map.get(y).get(x));
+                }
+
+                else {
+                    System.out.print(" ");
+                }
+
+            }
+//            row.forEach(item-> System.out.print(item.toString().replace(',',' ')));
+            if(Math.pow(y-actY,2)<Math.pow(radius,2)){
+                System.out.println();
+            }
+
+
         }
     }
 

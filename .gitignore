@@ -1,13 +1,13 @@
 .idea/
-build/
-.gradle/
+
+
 *.iml
 .floo*
 .DS_Store
 # Compiled class file
 .idea/
-build/
-.gradle/
+
+
 
 *.iml
 
@@ -23,7 +23,7 @@ build/
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
 # Package Files #
-*.jar
+
 *.war
 *.nar
 *.ear
