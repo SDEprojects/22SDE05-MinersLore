@@ -1,3 +1,32 @@
+STORY: |
+    ----------------------------------------------------
+    Start: >
+      You approach the mine store and see an old, decrepit man leaning against the entrance
+      You try to step past him but he stops you by blocking you with his cane.
+      He says, Sonny you aint getting in here without telling me your name, now let me here it.
+    
+    Enter_Name: Please enter your name.
+    
+    Continue: >
+      Welcome to the spooky, miner cave store minerName I'm gonna put you on my list. 
+      You think to yourself, what a weird interaction.
+    
+    Continue1: >
+      What would you like to do next?
+      Ask the old man what he meant by his sullen words.
+      Enter the store to collect your necessities.
+      Exit the game.
+    
+    1: >
+      Hey what did you mean in case I dont make it out?
+      That's because most of you greedy folks get eaten up by the TommyKnocker.
+      He let out a creepy cackle... Hahahaha...cough....hahah. No more questions Sonny.
+      Then he limped off into the hot desert air and disappeared into the distance.
+    
+    2: You've entered the store. Please select your items.
+    3: GAME OVER! GOODBYE!
+
+
 A: |
 
     ----------------------------------------------------
