@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) throws Exception {
-//        Story.mainStory();
+//       Story.mainStory();
 
 
         Map map = new Map();
