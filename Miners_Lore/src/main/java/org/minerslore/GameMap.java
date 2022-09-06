@@ -3,12 +3,9 @@ package org.minerslore;
 import org.minerslore.Actors.Actor;
 import org.minerslore.Actors.Miner;
 import org.minerslore.Actors.OldMan;
-import org.minerslore.Items.Door;
-import org.minerslore.Items.Item;
-import org.minerslore.Items.Path;
-import org.minerslore.Items.Wall;
+import org.minerslore.Items.*;
 import org.yaml.snakeyaml.Yaml;
-
+import jline.console.ConsoleReader;
 import java.awt.*;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
@@ -71,7 +68,9 @@ public class GameMap {
                         mapObjectList.add(new Wall(new Point(x, y)));
                     } else if (charList.get(x) == ' ') {
                         mapObjectList.add(new Path(new Point(x, y)));
-                    } else if (charList.get(x) == '^') {
+                    } else if (charList.get(x) == '.') {
+                        mapObjectList.add(new CavePath(new Point(x, y)));
+                    }else if (charList.get(x) == '^') {
                         mapObjectList.add(new Door(new Point(x,y)));
                     } else {
                         mapObjectList.add(new Item(charList.get(x), new Point (x, y),false));

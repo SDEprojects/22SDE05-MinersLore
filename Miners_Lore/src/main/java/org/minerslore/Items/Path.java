@@ -4,7 +4,7 @@ import java.awt.Point;
 
 public class Path extends Item {
     public static final char SYMBOL = ' ';
-    public static final String MESSAGE = "Path walkable and can dig";
+    public static final String MESSAGE = "Path walkable";
 
     public Path(Point position) {
         super(SYMBOL, position, true );
