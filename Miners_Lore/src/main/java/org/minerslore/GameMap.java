@@ -2,50 +2,78 @@ package org.minerslore;
 
 import org.minerslore.Actors.Actor;
 import org.minerslore.Actors.Miner;
+import org.minerslore.Actors.OldMan;
 import org.minerslore.Items.Item;
+import org.minerslore.Items.Path;
 import org.minerslore.Items.Wall;
+import org.yaml.snakeyaml.Yaml;
 
 import java.awt.*;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class GameMap {
     private static List<ArrayList<Interact_Objects>> map = new ArrayList<>();
-    private static ArrayList<Actor> actors = new ArrayList<>();
+
+    static Miner miner;
+    static int colSize;
+    static int rowSize;
+
+
     public GameMap() {
+        int minerStartX=98;
+        int minerStartY=102;
+
+        int oldManStartX=96;
+        int oldManStartY=105;
+
 
         fetchStarterMap();
-        Miner miner = new Miner('M',new Point(20,20));
-        actors.add(miner);
-
+        colSize=map.size();
+        rowSize=map.get(0).size();
+        System.out.println(rowSize);
+        miner = new Miner('M',new Point(minerStartX,minerStartY));
+        miner.setOriginal_symbol(map.get(minerStartY).get(minerStartX));
         map.get(miner.getY()).set(miner.getX(),miner);
+
+        OldMan oldman = new OldMan(new Point(oldManStartX,oldManStartY));
+        oldman.setOriginal_symbol(map.get(oldManStartY).get(oldManStartX));
+        map.get(oldManStartY).set(oldManStartX,oldman);
+        setLinkedObjects();
+        colSize=map.size();
+        rowSize=map.get(0).size();
     }
     public static void  fetchStarterMap() {
         try {
-            BufferedReader in = new BufferedReader(
-                    new InputStreamReader(Objects.requireNonNull(Main.class.getClassLoader().getResourceAsStream("Map.txt")),
-                            StandardCharsets.UTF_8));
+
             String row;
             int y=0;
+            ClassLoader cl = Main.class.getClassLoader();
+            java.io.InputStream input = cl.getResourceAsStream("Map.yaml");
 
+            Yaml yaml = new Yaml();
 
+            java.util.Map<String, Object> obj = yaml.load(input);
+            BufferedReader in = new BufferedReader(new StringReader( obj.get("Map1").toString()));
 
             while ((row = in.readLine()) != null) {
 
-                ArrayList<Interact_Objects> mapObjectList = new ArrayList<Interact_Objects>();
+                ArrayList<Interact_Objects> mapObjectList = new ArrayList<>();
                 List<Character> charList = row.chars().mapToObj((i) -> Character.valueOf((char)i)).collect(Collectors.toList());
 
                 for (int x = 0; x < charList.size(); x++) {
+                    System.out.println(charList.size());
                     if (charList.get(x) == '=') {
                         mapObjectList.add(new Wall(new Point(x, y)));
-                    } else {
-                        mapObjectList.add(new Item(charList.get(x), new Point (x, y)));
+                    } else if (charList.get(x) == ' ') {
+                        mapObjectList.add(new Path(new Point(x, y)));
+                    }  else {
+                        mapObjectList.add(new Item(charList.get(x), new Point (x, y),false));
                     }
                 }
 
@@ -57,50 +85,57 @@ public class GameMap {
             throw new RuntimeException("Caught exception reading resource " + "Maps", e);
         }
     }
-
     public static void displayMap() {
         int radius =12;
-        Actor miner=actors.get(0);
-        int actX=miner.getX();
-        int actY=miner.getY();
+        int minerX=miner.getX();
+        int minerY= miner.getY();
 
+        Interact_Objects rootY =miner.getByIndex(((minerX+rowSize-16)%rowSize), ((minerY+colSize-8)%colSize));
 
-        map.get(miner.getY()).set(miner.getX(),miner);
-        for(int y =0; y<map.size(); y++){
-            for(int x = 0; x<map.get(y).size(); x++){
-                // ( x - Obj_X )^2+( y - Obj_Y ) ^ 2 < R^2
-                if (Math.pow(( x-actX) * .4,2)+Math.pow( y-actY,2 ) <= Math.pow( radius,2 )){
-                    System.out.print(map.get(y).get(x));
-                }
+        for(int y =0; y<16; y++){
 
-                else {
-                    System.out.print(" ");
-                }
-
+            Interact_Objects rootX =rootY;
+            for(int x = 0; x<32; x++){
+                System.out.print(rootX);
+                rootX =rootX.getE();
             }
-//            row.forEach(item-> System.out.print(item.toString().replace(',',' ')));
-            if(Math.pow(y-actY,2)<Math.pow(radius,2)){
                 System.out.println();
+//            }
+            rootY=rootY.getS();
+        }
+    }
+    public static void setLinkedObjects(){
+        int colSize=map.size();
+        for(int y =0; y< colSize; y++){
+            ArrayList<Interact_Objects> list=map.get(y);
+            int rowSize=list.size();
+
+            for (int x =0; x<rowSize; x++){
+
+                Interact_Objects temp=list.get(x);
+                temp.setN(map.get((y-1+colSize)%colSize).get(x));
+                temp.setS(map.get((y+1+colSize)%colSize).get(x));
+                temp.setE(map.get(y).get((x+1+rowSize)%rowSize));
+                temp.setW(map.get(y).get((x-1+rowSize)%rowSize));
+
             }
-
-
         }
     }
 
     public static void moveMiner(String Direction){
 
         if(Direction.equalsIgnoreCase("N")){
+                miner.moveActor(miner.getN());
+            }
 
-            (actors.get(0)).moveNorth();
-            }
             else if(Direction.equalsIgnoreCase("S")){
-            actors.get(0).moveSouth();
-                }
+            miner.moveActor(miner.getS());
+        }
             else if(Direction.equalsIgnoreCase("W")){
-            actors.get(0).moveWest();
-            }
+            miner.moveActor(miner.getW());
+        }
             else if(Direction.equalsIgnoreCase("E")){
-            actors.get(0).moveEast();
-            }
+            miner.moveActor(miner.getE());
+        }
     }
 }

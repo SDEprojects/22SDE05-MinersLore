@@ -8,12 +8,36 @@ version '1.0-SNAPSHOT'
 repositories {
     mavenCentral()
 }
+java {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(11))
+    }
+}
 
+jar {
+    baseName = 'Miners_Lore'
+    from('src/main/java') {
+        include 'config/**/*.xml'
+    }
+
+    manifest {
+        attributes 'Implementation-Title': 'Analytics Library', 'Implementation-Version': version
+    }
+}
+sourceSets {
+    main {
+        resources {
+            srcDirs "src/main/resources", "src/main/configs"
+        }
+    }
+}
 dependencies {
+
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
-    //implementation group: 'com.googlecode.json-simple', name: 'json-simple', version: '1.1.1'
-    implementation group: 'org.yaml', name: 'snakeyaml', version: '1.5'
+    compile files('src/resources/snakeyaml-1:30.jar')
+
+
 }
 
 
