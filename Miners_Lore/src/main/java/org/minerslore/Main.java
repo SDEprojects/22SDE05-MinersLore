@@ -1,47 +1,42 @@
 package org.minerslore;
-import java.util.Locale;
+import org.yaml.snakeyaml.Yaml;
+
+import java.io.*;
+import java.lang.reflect.InvocationTargetException;
+import java.util.*;
 import java.util.Scanner;
+
+
+
 public class Main {
-    public static void main(String[] args) {
-        Map map = new Map();
-        map.displayMap();
+
+    public static void main(String[] args) throws Exception {
+//        System.out.print("\033[H\033[2J");
+//        System.out.flush();
+
+
+
+
+        GameMap map = new GameMap();
+
 
         Scanner reader = new Scanner(System.in);  // Reading from System.in
 
-        String Command="";
-        while(!Command.equals("quite")){
+        String Command = "";
+        while (!Command.equals("quit")) {
 
-            System.out.println("Enter");
-            String n = reader.next(); // Scans the next token of the input as an int.
-            Command=n;
-            int x, y;
-            if(n.equalsIgnoreCase("N")){
+            // The Code below should clear the terminal window screen, although it does not work in Intellij.
+//            System.out.print("\033[H\033[2J");
+//            System.out.flush();
 
-                map.moveMiner(0,-1);
-
-            }
-            else if(n.equalsIgnoreCase("S")){
-
-                    map.moveMiner(0,1);
-
-                }
-
-            else if(n.equalsIgnoreCase("W")){
-
-                map.moveMiner(-1,0);
-
-            }
-            else if(n.equalsIgnoreCase("E")){
-
-                map.moveMiner(1,0);
-
-            }
             map.displayMap();
 
+            System.out.println("Enter");
+            Command = reader.next();
+
+            map.moveMiner(Command);
         }
 
-//once finished
-        reader.close();
 
-        }
     }
+}
