@@ -3,6 +3,7 @@ package org.minerslore;
 import org.minerslore.Actors.Actor;
 import org.minerslore.Actors.Miner;
 import org.minerslore.Actors.OldMan;
+import org.minerslore.Items.Door;
 import org.minerslore.Items.Item;
 import org.minerslore.Items.Path;
 import org.minerslore.Items.Wall;
@@ -36,7 +37,6 @@ public class GameMap {
         fetchStarterMap();
         colSize=map.size();
         rowSize=map.get(0).size();
-        System.out.println(rowSize);
         miner = new Miner('M',new Point(minerStartX,minerStartY));
         miner.setOriginal_symbol(map.get(minerStartY).get(minerStartX));
         map.get(miner.getY()).set(miner.getX(),miner);
@@ -67,12 +67,13 @@ public class GameMap {
                 List<Character> charList = row.chars().mapToObj((i) -> Character.valueOf((char)i)).collect(Collectors.toList());
 
                 for (int x = 0; x < charList.size(); x++) {
-                    System.out.println(charList.size());
                     if (charList.get(x) == '=') {
                         mapObjectList.add(new Wall(new Point(x, y)));
                     } else if (charList.get(x) == ' ') {
                         mapObjectList.add(new Path(new Point(x, y)));
-                    }  else {
+                    } else if (charList.get(x) == '^') {
+                        mapObjectList.add(new Door(new Point(x,y)));
+                    } else {
                         mapObjectList.add(new Item(charList.get(x), new Point (x, y),false));
                     }
                 }
@@ -100,7 +101,6 @@ public class GameMap {
                 rootX =rootX.getE();
             }
                 System.out.println();
-//            }
             rootY=rootY.getS();
         }
     }
