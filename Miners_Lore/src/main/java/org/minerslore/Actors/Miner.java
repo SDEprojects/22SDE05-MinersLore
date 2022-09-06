@@ -22,7 +22,5 @@ public class Miner extends Actor {
 
     }
 
-    public Point getPostion(){
-        return this.Position;
-    }
+
 }
