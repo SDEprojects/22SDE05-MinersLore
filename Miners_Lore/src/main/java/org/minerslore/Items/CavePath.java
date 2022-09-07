@@ -1,7 +1,9 @@
 package org.minerslore.Items;
+
 import org.minerslore.Actors.Actor;
-import java.awt.Point;
-import java.io.*;
+
+import java.awt.*;
+
 public class CavePath extends Item {
     int gold;
     public static final String ANSI_YELLOW = "\u001B[33m";
@@ -9,8 +11,9 @@ public class CavePath extends Item {
 
     public static final char SYMBOL = '.';
     public static final String MESSAGE = "Path walkable. This path can be mined.";
+
     public CavePath(Point position) {
-        super(SYMBOL, position, true );
+        super(SYMBOL, position, true);
     }
 
     public static void interact(Actor actor) {

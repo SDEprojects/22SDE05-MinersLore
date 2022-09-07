@@ -1,19 +1,17 @@
 package org.minerslore.Actors;
 
-import org.minerslore.Actors.Actor;
-
 import java.awt.*;
 
 public class Monster extends Actor {
-    public Monster() {
-        super('M',new Point(0,0));
+    public Monster(char symbol, Point location) {
+        super(symbol, location);
     }
 
-    public void move(){
+    public void move() {
 
     }
 
-    public void encounter(){
+    public void encounter() {
 
     }
 }

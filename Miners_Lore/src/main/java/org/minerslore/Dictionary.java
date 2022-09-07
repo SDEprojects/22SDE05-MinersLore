@@ -1,8 +1,8 @@
 package org.minerslore;
 
+import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
-import java.lang.reflect.*;
 
 // Our Dictionary
 public class Dictionary {
@@ -10,6 +10,7 @@ public class Dictionary {
     public Dictionary() {
         super();
     }
+
     public static void dict() throws Exception {
 
         Map<Character, Method> playerAction = new HashMap<Character, Method>();
@@ -47,7 +48,7 @@ public class Dictionary {
         char cmdW = 'w';
         playerAction.get(cmdW).invoke(null); // prints west
 
-        }
+    }
 
     public static void dig() {
         System.out.println("dig");

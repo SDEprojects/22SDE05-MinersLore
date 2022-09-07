@@ -1,19 +1,11 @@
 package org.minerslore;
 
-import java.io.File;
-import java.io.InputStream;
-import java.util.HashMap;
 import java.util.Scanner;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.Map;
-
-import org.yaml.snakeyaml.Yaml;
 
 
 public class Story {
 
-//    // Instantiating a new ObjectMapper as a YAMLFactory
+    //    // Instantiating a new ObjectMapper as a YAMLFactory
 //    ObjectMapper om = new ObjectMapper(new YAMLFactory());
 //
 //    // Mapping the employee from the YAML file to the Employee class
@@ -28,8 +20,9 @@ public class Story {
     // variables
     static Scanner stringScanner = new Scanner(System.in); // Scanner that takes string input
     static Scanner intScanner = new Scanner(System.in); // Scanner that takes int input
+
     @SuppressWarnings("unchecked")
-    public  void mainStory() {
+    public void mainStory() {
 //
         System.out.println("\n\n" + "^^^^^^^^^^^^^^^^^^^^^^^^^^WELCOME TO MINERS LORE^^^^^^^^^^^^^^^^^^^^^^^^^^" +
                 "^^^^^^^^^^^^^^^");
@@ -48,8 +41,8 @@ public class Story {
         System.out.println("What would you like to do next?");
         System.out.println("-------------------------------" + "\n");
         System.out.println("1. Ask the old man what he meant by his sullen words. " + "\n"
-                            + "2. Enter the store to collect your necessities. " + "\n"
-                            + "3. Exit the game." + "\n");
+                + "2. Enter the store to collect your necessities. " + "\n"
+                + "3. Exit the game." + "\n");
         int minerDecision = intScanner.nextInt();
 
         if (minerDecision == 1) {
@@ -62,21 +55,18 @@ public class Story {
             System.out.println("1. Ask the old man what he meant by his sullen words. " + "\n"
                     + "2. Enter the store to collect your necessities. " + "\n"
                     + "3. Exit the game." + "\n");
-          minerDecision = intScanner.nextInt();
-          if (minerDecision == 2) {
-              System.out.println("You've entered the store. Please select your items." + "\n\n\n");
-          }
+            minerDecision = intScanner.nextInt();
+            if (minerDecision == 2) {
+                System.out.println("You've entered the store. Please select your items." + "\n\n\n");
+            }
 
 
-        }
-        else if (minerDecision == 2) {
+        } else if (minerDecision == 2) {
             System.out.println("You've entered the store. Please select your items." + "\n\n\n");
-        }
-        else if (minerDecision == 3) {
+        } else if (minerDecision == 3) {
             System.out.println("GAME OVER! GOODBYE!");
             mainStory();
-        }
-        else {
+        } else {
             System.out.println("Please enter a valid number.");
         }
 

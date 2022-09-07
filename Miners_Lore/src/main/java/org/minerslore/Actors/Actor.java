@@ -1,9 +1,10 @@
 package org.minerslore.Actors;
+
 import org.minerslore.Interact_Objects;
 import org.minerslore.Items.Item;
 
-import javax.swing.text.Position;
-import java.awt.Point;
+import java.awt.*;
+
 public class Actor extends Interact_Objects {
 
     private Interact_Objects on_Block;
@@ -22,17 +23,19 @@ public class Actor extends Interact_Objects {
     }
 
 
-    public void moveActor(Interact_Objects nextBlock){
-        if(nextBlock instanceof Item && ((Item) nextBlock).isPath()) {
+    public void moveActor(Interact_Objects nextBlock) {
+        if (nextBlock instanceof Item && ((Item) nextBlock).isPath()) {
             // Put original On-Block in actor's place
             Interact_Objects prevBlock = this.on_Block;
 //            prevBlock.setCurrent_symbol('!');
 
             // Replace Current block
+
             prevBlock.setE(this.getE());
             prevBlock.setW(this.getW());
             prevBlock.setS(this.getS());
             prevBlock.setN(this.getN());
+
             this.getN().setS(prevBlock);
             this.getS().setN(prevBlock);
             this.getE().setW(prevBlock);
@@ -60,9 +63,9 @@ public class Actor extends Interact_Objects {
 
         }
 
-
     }
-    public void encounter(){
+
+    public void encounter() {
         System.out.println("Actor");
 
     }

@@ -1,6 +1,6 @@
 package org.minerslore.Items;
-import org.minerslore.Actors.Actor;
-import java.awt.Point;
+
+import java.awt.*;
 
 public class Door extends Item {
 
