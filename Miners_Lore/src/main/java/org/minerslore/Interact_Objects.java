@@ -27,7 +27,6 @@ public abstract class Interact_Objects {
 
     ;
 
-
     public char getSymbol() {
         return this.current_symbol;
     }

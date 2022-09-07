@@ -7,8 +7,8 @@ import java.awt.*;
 //\u001B[32m	GREEN_BACKGROUND	\u001B[42m #F3FEED
 public class Path extends Item {
 
-    public static final char SYMBOL = ' ';
-    public static final String MESSAGE = "Path walkable";
+    private static final char SYMBOL = ' ';
+    private static final String MESSAGE = "Path walkable";
 
     public Path(Point position) {
 

@@ -1,5 +1,6 @@
 package org.minerslore.Items;
 
+import org.minerslore.Actors.Actor;
 import org.minerslore.Interact_Objects;
 
 import java.awt.*;
@@ -21,5 +22,8 @@ public class Item extends Interact_Objects {
 
     public void setPath(boolean path) {
         isPath = path;
+    }
+    public static void interact(Actor actor) {
+
     }
 }

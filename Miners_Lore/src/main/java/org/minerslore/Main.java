@@ -8,14 +8,17 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) throws Exception {
-
+//        ArrayList<Interact_Objects> mapObjectList=new ArrayList<Interact_Objects>();
+//
+//        CommandsDict.addToMap(mapObjectList,new Point(2,3),'&');
+//        System.out.println(mapObjectList);
         GameMap map = new GameMap();
 
 
         Scanner reader = new Scanner(System.in);  // Reading from System.in
 
-        String Command = "";
-        while (!Command.equals("q")) {
+        char Command = ' ';
+        while (Command!='q') {
 
             // Clear Screen
             clearConsole();
@@ -23,7 +26,7 @@ public class Main {
             map.displayMap();
 
             System.out.println("Enter");
-            Command = reader.next();
+            Command = reader.next().toUpperCase().charAt(0);
 
             map.moveMiner(Command);
         }
