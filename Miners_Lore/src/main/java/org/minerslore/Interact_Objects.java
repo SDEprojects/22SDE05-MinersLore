@@ -1,6 +1,6 @@
 package org.minerslore;
 
-import java.awt.Point;
+import java.awt.*;
 
 public abstract class Interact_Objects {
     private char current_symbol;
@@ -15,12 +15,17 @@ public abstract class Interact_Objects {
         this.position = location;
     }
 
-    public int getX(){
+    public int getX() {
         return this.position.x;
-    };
-    public int getY(){
+    }
+
+    ;
+
+    public int getY() {
         return this.position.y;
-    };
+    }
+
+    ;
 
 
     public char getSymbol() {
@@ -30,15 +35,20 @@ public abstract class Interact_Objects {
     public Interact_Objects getN() {
         return N;
     }
+
     public Interact_Objects getS() {
         return S;
     }
+
     public Interact_Objects getE() {
         return E;
     }
+
     public Interact_Objects getW() {
         return W;
-    }    public void setN(Interact_Objects n) {
+    }
+
+    public void setN(Interact_Objects n) {
         N = n;
     }
 
@@ -69,16 +79,16 @@ public abstract class Interact_Objects {
 
     @Override
     public String toString() {
-        return String.valueOf( current_symbol);
+        return String.valueOf(current_symbol);
     }
 
-    public Interact_Objects getByIndex(int x, int y){
-        Interact_Objects temp=S;
-        while (temp.getY()!=y){
-            temp=temp.S;
+    public Interact_Objects getByIndex(int x, int y) {
+        Interact_Objects temp = S;
+        while (temp.getY() != y) {
+            temp = temp.S;
         }
-        while(temp.getX()!=x){
-            temp=temp.E;
+        while (temp.getX() != x) {
+            temp = temp.E;
         }
         return temp;
     }

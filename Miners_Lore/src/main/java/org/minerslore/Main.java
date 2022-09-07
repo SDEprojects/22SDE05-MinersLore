@@ -1,21 +1,13 @@
 package org.minerslore;
-import org.yaml.snakeyaml.Yaml;
 
-import java.io.*;
-import java.lang.reflect.InvocationTargetException;
-import java.util.*;
+
+import java.io.IOException;
 import java.util.Scanner;
-
 
 
 public class Main {
 
     public static void main(String[] args) throws Exception {
-//        System.out.print("\033[H\033[2J");
-//        System.out.flush();
-
-
-
 
         GameMap map = new GameMap();
 
@@ -23,11 +15,10 @@ public class Main {
         Scanner reader = new Scanner(System.in);  // Reading from System.in
 
         String Command = "";
-        while (!Command.equals("quit")) {
+        while (!Command.equals("q")) {
 
-            // The Code below should clear the terminal window screen, although it does not work in Intellij.
-//            System.out.print("\033[H\033[2J");
-//            System.out.flush();
+            // Clear Screen
+            clearConsole();
 
             map.displayMap();
 
@@ -37,6 +28,17 @@ public class Main {
             map.moveMiner(Command);
         }
 
-
     }
+
+    public static void clearConsole() {
+        try {
+            if (System.getProperty("os.name").contains("Windows")) {
+                new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+            } else {
+                System.out.print("\033\143");
+            }
+        } catch (IOException | InterruptedException ex) {
+        }
+    }
+
 }

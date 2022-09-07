@@ -1,7 +1,8 @@
 package org.minerslore.Items;
+
 import org.minerslore.Actors.Actor;
-import org.minerslore.Interact_Objects;
-import java.awt.Point;
+
+import java.awt.*;
 
 public class Wall extends Item {
     public static final char SYMBOL = '=';

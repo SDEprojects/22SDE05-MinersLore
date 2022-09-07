@@ -1,6 +1,5 @@
 package org.minerslore.Actors;
 
-import org.minerslore.Actors.Actor;
 import org.minerslore.Main;
 import org.minerslore.Story;
 import org.yaml.snakeyaml.Yaml;
@@ -30,16 +29,17 @@ public class OldMan extends Actor {
     }
 
 
-    public static void showInventory(){
-
-    }
-    public static void showActions(){
+    public static void showInventory() {
 
     }
 
-    public void encounter(){
+    public static void showActions() {
+
+    }
+
+    public void encounter() {
 //        System.out.println(Story.get("STORY"));
-        Story oldmanStory =new Story();
+        Story oldmanStory = new Story();
         oldmanStory.mainStory();
 
     }
