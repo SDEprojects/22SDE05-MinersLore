@@ -9,12 +9,12 @@ import java.util.Map;
 
 public class OldMan extends Actor {
 
-    public static final char SYMBOL = 'O';
-    public static final String MESSAGE = "Old man";
+    private static final char SYMBOL = 'O';
+    private static final String MESSAGE = "Old man";
     Map<String, Object> Story;
 
 
-    public OldMan(Point location) {
+    public OldMan(char symbol, Point location) {
 
 
         super(SYMBOL, location);

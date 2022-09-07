@@ -5,8 +5,8 @@ import org.minerslore.Actors.Actor;
 import java.awt.*;
 
 public class Wall extends Item {
-    public static final char SYMBOL = '=';
-    public static final String MESSAGE = "This is a rock wall, you can't move here.";
+    private static final char SYMBOL = '=';
+    private static final String MESSAGE = "This is a rock wall, you can't move here.";
 
     public Wall(Point position) {
 
@@ -16,6 +16,7 @@ public class Wall extends Item {
     }
 
     public static void interact(Actor actor) {
+
         System.out.println(MESSAGE);
     }
 }
