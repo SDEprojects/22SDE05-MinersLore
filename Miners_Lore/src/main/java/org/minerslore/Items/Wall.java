@@ -9,10 +9,7 @@ public class Wall extends Item {
     private static final String MESSAGE = "This is a rock wall, you can't move here.";
 
     public Wall(Point position) {
-
         super(SYMBOL, position, false);
-
-
     }
 
     public static void interact(Actor actor) {

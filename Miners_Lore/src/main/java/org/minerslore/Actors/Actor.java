@@ -23,6 +23,9 @@ public class Actor extends Interact_Objects {
         this.on_Block = original_symbol;
     }
 
+    public void setGoldKG(int kg) {
+        this.goldKG = kg;
+    }
 
     public void moveActor(Interact_Objects nextBlock) throws IOException {
         if (nextBlock instanceof Item && ((Item) nextBlock).isPath()) {
@@ -68,5 +71,9 @@ public class Actor extends Interact_Objects {
     public void encounter() throws IOException {
         System.out.println("Actor");
 
+    }
+
+    public int getGoldKG() {
+        return goldKG;
     }
 }

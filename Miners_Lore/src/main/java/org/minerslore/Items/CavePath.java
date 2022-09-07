@@ -3,6 +3,7 @@ package org.minerslore.Items;
 import org.minerslore.Actors.Actor;
 
 import java.awt.*;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class CavePath extends Item {
     private int gold;
@@ -17,7 +18,12 @@ public class CavePath extends Item {
     }
 
     public static void interact(Actor actor) {
-        System.out.println(MESSAGE);
+        int randomGoldKG = 0;
+        double probability = Math.random();
+        if (probability <= .25) {
+            randomGoldKG = ThreadLocalRandom.current().nextInt(1, 11);
+        }
+        actor.setGoldKG(randomGoldKG);
     }
 
 
