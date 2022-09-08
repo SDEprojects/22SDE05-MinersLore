@@ -32,7 +32,8 @@ public class GenerateMapDict {
                     '^', "charToDoorAddToMap",
                     ' ', "charToPathAddToMap",
                     '.', "charToCavePathAddToMap",
-                    '*', "charToItemAddToMap"
+                    '*', "charToItemAddToMap",
+                    '-', "charToBoundaryAddToMap"
             )
     );
     public static Map<Character, String> userCommands = new HashMap<>(
@@ -58,14 +59,16 @@ public class GenerateMapDict {
 
     public static void charToCavePathAddToMap(ArrayList<GameEntity> mapObjectList, Point point, char ch) {
         ((ArrayList<GameEntity>) mapObjectList).add(new CavePath(point, false));
-//        for (int i = 0; i < mapObjectList.size(); i++) {
-//            System.out.println("test");
-//        }
     }
 
     public static void charToItemAddToMap(ArrayList<GameEntity> mapObjectList, Point point, char ch) {
         ((ArrayList<GameEntity>) mapObjectList).add(new Item(ch, point, false));
     }
+
+    public static void charToBoundaryAddToMap(ArrayList<GameEntity> mapObjectList, Point point, char ch) {
+        ((ArrayList<GameEntity>) mapObjectList).add(new Boundary(point));
+    }
+
 
     public static void addToMap(ArrayList<GameEntity> mapObjectList, Point point, char ch) throws InvocationTargetException, IllegalAccessException, NoSuchMethodException {
         if (to_Map_Functions.containsKey(ch)) {
@@ -81,34 +84,5 @@ public class GenerateMapDict {
         return to_Map_Functions.containsKey(ch);
     }
 
-    public static void goNorth(Actor actor) throws IOException {
-        actor.moveActor(actor.getN());
-    }
-
-    public static void goSouth(Actor actor) throws IOException {
-        actor.moveActor(actor.getS());
-    }
-
-    public static void goEast(Actor actor) throws IOException {
-        actor.moveActor(actor.getE());
-    }
-
-    public static void goWest(Actor actor) throws IOException {
-        actor.moveActor(actor.getW());
-    }
-
-    public static void actionDig(Actor actor) {
-
-    }
-
-    public static void actorActions(Actor actor, char ch) throws InvocationTargetException, IllegalAccessException, NoSuchMethodException {
-
-        if (userCommands.containsKey(ch)) {
-            System.out.println(ch);
-            minerObj.getClass().getMethod(userCommands.get(ch), paramUserCommandTypes).invoke(userCommands.get(ch), actor);
-        } else {
-            System.out.println("Miner is confused.");
-        }
-    }
 
 }
