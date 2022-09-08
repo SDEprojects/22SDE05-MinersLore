@@ -4,6 +4,7 @@ import org.minerslore.Interact_Objects;
 import org.minerslore.Items.Item;
 
 import java.awt.*;
+import java.io.IOException;
 
 public class Actor extends Interact_Objects {
 
@@ -23,7 +24,7 @@ public class Actor extends Interact_Objects {
     }
 
 
-    public void moveActor(Interact_Objects nextBlock) {
+    public void moveActor(Interact_Objects nextBlock) throws IOException {
         if (nextBlock instanceof Item && ((Item) nextBlock).isPath()) {
             // Put original On-Block in actor's place
             Interact_Objects prevBlock = this.on_Block;
@@ -58,14 +59,13 @@ public class Actor extends Interact_Objects {
             this.getW().setE(this);
             this.setPosition(nextBlock.getPosition());
         } else if (nextBlock instanceof OldMan) {
-            System.out.println("Something");
             ((OldMan) nextBlock).encounter();
 
         }
 
     }
 
-    public void encounter() {
+    public void encounter() throws IOException {
         System.out.println("Actor");
 
     }

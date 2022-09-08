@@ -5,6 +5,7 @@ import org.minerslore.Story;
 import org.yaml.snakeyaml.Yaml;
 
 import java.awt.*;
+import java.io.IOException;
 import java.util.Map;
 
 public class OldMan extends Actor {
@@ -37,7 +38,7 @@ public class OldMan extends Actor {
 
     }
 
-    public void encounter() {
+    public void encounter() throws IOException {
 //        System.out.println(Story.get("STORY"));
         Story oldmanStory = new Story();
         oldmanStory.mainStory();
