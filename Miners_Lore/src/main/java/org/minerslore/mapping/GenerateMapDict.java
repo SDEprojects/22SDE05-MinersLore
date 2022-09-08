@@ -32,7 +32,8 @@ public class GenerateMapDict {
                     '^', "charToDoorAddToMap",
                     ' ', "charToPathAddToMap",
                     '.', "charToCavePathAddToMap",
-                    '*', "charToItemAddToMap"
+                    '*', "charToItemAddToMap",
+                    '+', "charToJewelAddToMap"
             )
     );
     public static Map<Character, String> userCommands = new HashMap<>(
@@ -65,6 +66,10 @@ public class GenerateMapDict {
 
     public static void charToItemAddToMap(ArrayList<GameEntity> mapObjectList, Point point, char ch) {
         ((ArrayList<GameEntity>) mapObjectList).add(new Item(ch, point, false));
+    }
+
+    public static void charToJewelAddToMap(ArrayList<GameEntity> mapObjectList, Point point, char ch) {
+        ((ArrayList<GameEntity>) mapObjectList).add(new Jewel(point));
     }
 
     public static void addToMap(ArrayList<GameEntity> mapObjectList, Point point, char ch) throws InvocationTargetException, IllegalAccessException, NoSuchMethodException {

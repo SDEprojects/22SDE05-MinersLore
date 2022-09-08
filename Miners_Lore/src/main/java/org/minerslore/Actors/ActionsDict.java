@@ -50,6 +50,8 @@ public class ActionsDict {
         Item block = (Item) actor.getOn_Block();
         if (block instanceof CavePath && block.isPath()) {
             ((CavePath)block).interact(actor);
+        } else if (block instanceof Jewel && block.isPath()) {
+            ((Jewel)block).interact(actor);
         }
     }
 
