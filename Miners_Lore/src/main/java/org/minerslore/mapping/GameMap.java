@@ -28,6 +28,7 @@ public class GameMap {
     private static Monster monster;
     private static int colSize;
     private static int rowSize;
+    private static Map<String, Object> minersEquipment;
 
 
     public GameMap() {
@@ -103,20 +104,36 @@ public class GameMap {
 
         int minerX = miner.getX();
         int minerY = miner.getY();
-        StringBuilder sb = new StringBuilder();
+        List<String> outPutString = new ArrayList();
         GameEntity rootY = miner.getByIndex(((minerX + rowSize - DISPLAY_NUMBER) % rowSize), ((minerY + colSize - DISPLAY_NUMBER / 2) % colSize));
 
         for (int y = 0; y < DISPLAY_NUMBER; y++) {
-
+            StringBuilder sb = new StringBuilder();
             GameEntity rootX = rootY;
             for (int x = 0; x < DISPLAY_NUMBER * 2; x++) {
-                System.out.print(rootX);
+//                System.out.print(rootX);
+                sb.append(rootX);
                 rootX = rootX.getE();
             }
-            System.out.println(((helpList.size()+4) > y && y>3 ) ? "\t"+helpList.get(y-4) : "");
+            outPutString.add(sb.toString());
+
             rootY = rootY.getS();
         }
+        List tempEquipKeys= List.of(minersEquipment.keySet().toArray());
+        List tempEquipValues= List.of(minersEquipment.values().toArray());
+        int helpListSize = helpList.size();
+        for (int i = 0; i < outPutString.size(); i++) {
+            if (i < helpListSize) {
+                System.out.println(outPutString.get(i) + "\t" + helpList.get(i));
+            } else if (i < helpListSize + tempEquipKeys.size() && !tempEquipValues.get(i-helpListSize).equals("_")) {
+                System.out.println(outPutString.get(i) + "\t" + tempEquipKeys.get(i-helpListSize)+":\t"+tempEquipValues.get(i-helpListSize));
+            } else {
+                System.out.println(outPutString.get(i));
+            }
+        }
+
     }
+
 
     public static void setLinkedObjects(List<ArrayList<GameEntity>> map) {
         int colSize = map.size();
@@ -149,6 +166,7 @@ public class GameMap {
 
         Map<String, Object> tempHelp = yaml.load(streamMapYaml);
         helpList = (ArrayList<String>) tempHelp.get("Help");
+        minersEquipment = (Map<String, Object>) tempHelp.get("Equipment");
 
     }
 
