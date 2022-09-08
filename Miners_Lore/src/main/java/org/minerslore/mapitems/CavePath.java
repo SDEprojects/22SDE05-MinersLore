@@ -20,11 +20,9 @@ public class CavePath extends Item {
     }
 
     public static void interact(Actor actor) {
-        System.out.println("got here");
         Item block = (Item) actor.getOn_Block();
         CavePath tile = (CavePath) block;
         if (tile.getIsDug() == false) {
-            System.out.println("tile " + tile.getPosition());
             tile.setIsDug();
             int randomGoldKG = 0;
             double probability = Math.random();
@@ -39,7 +37,6 @@ public class CavePath extends Item {
                 System.out.println("No gold here. Keep it moving, miner!");
             }
         } else if (tile.getIsDug() == true) {
-            System.out.println("tile " + tile.getPosition());
             System.out.println("You've already dug here. Keep it moving, miner!");
         }
     }
