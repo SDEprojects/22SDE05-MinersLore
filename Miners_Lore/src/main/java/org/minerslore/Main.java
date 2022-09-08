@@ -20,15 +20,15 @@ public class Main {
         char Command = ' ';
         while (Command!='q') {
 
-            // Clear Screen
-            clearConsole();
-
             map.displayMap();
 
             System.out.println("Enter");
             Command = reader.next().toUpperCase().charAt(0);
 
-            map.moveMiner(Command);
+            // Clear Screen
+            clearConsole();
+
+            map.handleCommand(Command);
         }
 
     }
