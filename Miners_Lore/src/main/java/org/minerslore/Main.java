@@ -1,42 +1,49 @@
 package org.minerslore;
-import org.yaml.snakeyaml.Yaml;
 
-import java.io.*;
-import java.lang.reflect.InvocationTargetException;
-import java.util.*;
+
+import org.minerslore.mapping.GameMap;
+
+import java.io.IOException;
 import java.util.Scanner;
-
 
 
 public class Main {
 
     public static void main(String[] args) throws Exception {
-//        System.out.print("\033[H\033[2J");
-//        System.out.flush();
-
-
-
-
+//        ArrayList<Interact_Objects> mapObjectList=new ArrayList<Interact_Objects>();
+//
+//        CommandsDict.addToMap(mapObjectList,new Point(2,3),'&');
+//        System.out.println(mapObjectList);
         GameMap map = new GameMap();
 
 
         Scanner reader = new Scanner(System.in);  // Reading from System.in
 
-        String Command = "";
-        while (!Command.equals("quit")) {
-
-            // The Code below should clear the terminal window screen, although it does not work in Intellij.
-//            System.out.print("\033[H\033[2J");
-//            System.out.flush();
+        char command = ' ';
+        while (command!='q') {
 
             map.displayMap();
 
             System.out.println("Enter");
-            Command = reader.next();
+            command = reader.next().toUpperCase().charAt(0);
 
-            map.moveMiner(Command);
+            // Clear Screen
+            clearConsole();
+
+            map.handleCommand(command);
         }
 
-
     }
+
+    public static void clearConsole() {
+        try {
+            if (System.getProperty("os.name").contains("Windows")) {
+                new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+            } else {
+                System.out.print("\033\143");
+            }
+        } catch (IOException | InterruptedException ex) {
+        }
+    }
+
 }

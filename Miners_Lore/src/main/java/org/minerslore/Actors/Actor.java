@@ -1,38 +1,45 @@
 package org.minerslore.Actors;
-import org.minerslore.Interact_Objects;
-import org.minerslore.Items.Item;
 
-import javax.swing.text.Position;
-import java.awt.Point;
-public class Actor extends Interact_Objects {
+import org.minerslore.GameEntity;
+import org.minerslore.mapitems.Item;
 
-    private Interact_Objects on_Block;
+import java.awt.*;
+import java.io.IOException;
+
+public class Actor extends GameEntity {
+
+    private GameEntity on_Block;
     private int goldKG;
 
     public Actor(char symbol, Point location) {
         super(symbol, location);
     }
 
-    public Interact_Objects getOn_Block() {
+    public GameEntity getOn_Block() {
         return on_Block;
     }
 
-    public void setOriginal_symbol(Interact_Objects original_symbol) {
+    public void setOriginal_symbol(GameEntity original_symbol) {
         this.on_Block = original_symbol;
     }
 
+    public void setGoldKG(int kg) {
+        this.goldKG = this.goldKG + kg;
+    }
 
-    public void moveActor(Interact_Objects nextBlock){
-        if(nextBlock instanceof Item && ((Item) nextBlock).isPath()) {
+    public void moveActor(GameEntity nextBlock) throws IOException {
+        if (nextBlock instanceof Item && ((Item) nextBlock).isPath()) {
             // Put original On-Block in actor's place
-            Interact_Objects prevBlock = this.on_Block;
+            GameEntity prevBlock = this.on_Block;
 //            prevBlock.setCurrent_symbol('!');
 
             // Replace Current block
+
             prevBlock.setE(this.getE());
             prevBlock.setW(this.getW());
             prevBlock.setS(this.getS());
             prevBlock.setN(this.getN());
+
             this.getN().setS(prevBlock);
             this.getS().setN(prevBlock);
             this.getE().setW(prevBlock);
@@ -55,15 +62,18 @@ public class Actor extends Interact_Objects {
             this.getW().setE(this);
             this.setPosition(nextBlock.getPosition());
         } else if (nextBlock instanceof OldMan) {
-            System.out.println("Something");
             ((OldMan) nextBlock).encounter();
 
         }
 
-
     }
-    public void encounter(){
+
+    public void encounter() throws IOException {
         System.out.println("Actor");
 
+    }
+
+    public int getGoldKG() {
+        return goldKG;
     }
 }
