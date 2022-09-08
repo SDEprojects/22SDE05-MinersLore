@@ -1,7 +1,7 @@
 package org.minerslore.Actors;
 
 import org.minerslore.Interact_Objects;
-import org.minerslore.Items.Item;
+import org.minerslore.mapitems.Item;
 
 import java.awt.*;
 import java.io.IOException;

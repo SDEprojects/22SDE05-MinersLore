@@ -1,6 +1,8 @@
 package org.minerslore;
 
 
+import org.minerslore.mapping.GameMap;
+
 import java.io.IOException;
 import java.util.Scanner;
 

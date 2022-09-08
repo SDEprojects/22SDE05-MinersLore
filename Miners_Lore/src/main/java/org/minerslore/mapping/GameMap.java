@@ -1,24 +1,29 @@
-package org.minerslore;
+package org.minerslore.mapping;
 
+import org.minerslore.Actors.ActionsDict;
 import org.minerslore.Actors.Actor;
 import org.minerslore.Actors.Miner;
 import org.minerslore.Actors.Monster;
 import org.minerslore.Actors.OldMan;
+import org.minerslore.Interact_Objects;
+import org.minerslore.Main;
 import org.yaml.snakeyaml.Yaml;
 
 import java.awt.*;
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.StringReader;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 
 public class GameMap {
     private static final int DISPLAY_NUMBER = 16;
-    private static List<String> helpList = new ArrayList<>(16);
+    private static List<String> helpList;
     private static Miner miner;
     private static Monster monster;
     private static int colSize;
@@ -34,7 +39,7 @@ public class GameMap {
 
         int monsterStartX = 90;
         int monsterStartY = 102;
-
+        generateHelpList();
         List<ArrayList<Interact_Objects>> map = fetchStarterMap();
 
         colSize = map.size();
@@ -108,7 +113,7 @@ public class GameMap {
                 System.out.print(rootX);
                 rootX = rootX.getE();
             }
-            System.out.println(helpList.get(y));
+            System.out.println(((helpList.size()+4) > y && y>3 ) ? "\t"+helpList.get(y-4) : "");
             rootY = rootY.getS();
         }
     }
@@ -135,27 +140,15 @@ public class GameMap {
 
     }
 
-    public static void generateHelpList() {
-        helpList.add("\t\t");
-        helpList.add("\t\t");
-        helpList.add("\t\t");
-        helpList.add("\t\t");
-        helpList.add("\t\t");
-        helpList.add("\t\t");
-        helpList.add("\t\t");
-        helpList.add("\t\t");
 
-        helpList.add("\t\t     N\t\t\t\t Go Command Enter: N,S,E,W");
-        helpList.add("\t\t    )|(\t\t\t\t Mine Command Enter: D");
-        helpList.add("\t\t  )  |  (");
-        helpList.add("\t\tW----O----E");
-        helpList.add("\t\t  )  |  (");
-        helpList.add("\t\t    )|(");
-        helpList.add("\t\t     S");
-        helpList.add("\t\t");
-        helpList.add("\t\t");
-        helpList.add("\t\t");
-        helpList.add("\t\t");
+    public static void generateHelpList() {
+        ClassLoader cld = Main.class.getClassLoader();
+        InputStream streamMapYaml = cld.getResourceAsStream("help.yaml");
+
+        Yaml yaml = new Yaml();
+
+        Map<String, Object> tempHelp = yaml.load(streamMapYaml);
+        helpList = (ArrayList<String>) tempHelp.get("Help");
 
     }
 

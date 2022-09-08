@@ -1,12 +1,9 @@
-package org.minerslore;
+package org.minerslore.Actors;
 
-import org.minerslore.Actors.Actor;
-import org.minerslore.Items.*;
+import org.minerslore.mapitems.*;
 
-import java.awt.*;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -16,7 +13,7 @@ public class ActionsDict {
 
     static {
         try {
-            minerObj = Class.forName("org.minerslore.ActionsDict").getDeclaredConstructor().newInstance();
+            minerObj = Class.forName("org.minerslore.Actors.ActionsDict").getDeclaredConstructor().newInstance();
         } catch (InstantiationException | ClassNotFoundException | NoSuchMethodException | RuntimeException |
                  InvocationTargetException | IllegalAccessException e) {
             throw new RuntimeException(e);

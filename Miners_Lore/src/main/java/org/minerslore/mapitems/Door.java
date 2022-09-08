@@ -1,4 +1,4 @@
-package org.minerslore.Items;
+package org.minerslore.mapitems;
 
 import java.awt.*;
 

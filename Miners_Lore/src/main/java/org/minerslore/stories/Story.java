@@ -1,5 +1,6 @@
-package org.minerslore;
+package org.minerslore.stories;
 
+import org.minerslore.Main;
 import org.yaml.snakeyaml.Yaml;
 
 import java.io.*;
