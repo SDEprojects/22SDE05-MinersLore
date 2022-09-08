@@ -5,6 +5,7 @@ import org.minerslore.Interact_Objects;
 import org.minerslore.Items.*;
 
 import java.awt.*;
+import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -77,19 +78,19 @@ public class GenerateMapDict {
         return to_Map_Functions.containsKey(ch);
     }
 
-    public static void goNorth(Actor actor) {
+    public static void goNorth(Actor actor) throws IOException {
         actor.moveActor(actor.getN());
     }
 
-    public static void goSouth(Actor actor) {
+    public static void goSouth(Actor actor) throws IOException {
         actor.moveActor(actor.getS());
     }
 
-    public static void goEast(Actor actor) {
+    public static void goEast(Actor actor) throws IOException {
         actor.moveActor(actor.getE());
     }
 
-    public static void goWest(Actor actor) {
+    public static void goWest(Actor actor) throws IOException {
         actor.moveActor(actor.getW());
     }
 
