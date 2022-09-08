@@ -2,15 +2,15 @@ package org.minerslore;
 
 import java.awt.*;
 
-public abstract class Interact_Objects {
+public abstract class GameEntity {
     private char current_symbol;
     private Point position;
-    private Interact_Objects N;
-    private Interact_Objects S;
-    private Interact_Objects E;
-    private Interact_Objects W;
+    private GameEntity N;
+    private GameEntity S;
+    private GameEntity E;
+    private GameEntity W;
 
-    public Interact_Objects(char symbol, Point location) {
+    public GameEntity(char symbol, Point location) {
         this.current_symbol = symbol;
         this.position = location;
     }
@@ -31,36 +31,36 @@ public abstract class Interact_Objects {
         return this.current_symbol;
     }
 
-    public Interact_Objects getN() {
+    public GameEntity getN() {
         return N;
     }
 
-    public Interact_Objects getS() {
+    public GameEntity getS() {
         return S;
     }
 
-    public Interact_Objects getE() {
+    public GameEntity getE() {
         return E;
     }
 
-    public Interact_Objects getW() {
+    public GameEntity getW() {
         return W;
     }
 
-    public void setN(Interact_Objects n) {
+    public void setN(GameEntity n) {
         N = n;
     }
 
-    public void setS(Interact_Objects s) {
+    public void setS(GameEntity s) {
         S = s;
     }
 
 
-    public void setE(Interact_Objects e) {
+    public void setE(GameEntity e) {
         E = e;
     }
 
-    public void setW(Interact_Objects w) {
+    public void setW(GameEntity w) {
         W = w;
     }
 
@@ -81,8 +81,8 @@ public abstract class Interact_Objects {
         return String.valueOf(current_symbol);
     }
 
-    public Interact_Objects getByIndex(int x, int y) {
-        Interact_Objects temp = S;
+    public GameEntity getByIndex(int x, int y) {
+        GameEntity temp = S;
         while (temp.getY() != y) {
             temp = temp.S;
         }
