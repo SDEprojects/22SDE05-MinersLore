@@ -58,6 +58,9 @@ public class GenerateMapDict {
 
     public static void charToCavePathAddToMap(ArrayList<GameEntity> mapObjectList, Point point, char ch) {
         ((ArrayList<GameEntity>) mapObjectList).add(new CavePath(point, false));
+//        for (int i = 0; i < mapObjectList.size(); i++) {
+//            System.out.println("test");
+//        }
     }
 
     public static void charToItemAddToMap(ArrayList<GameEntity> mapObjectList, Point point, char ch) {
