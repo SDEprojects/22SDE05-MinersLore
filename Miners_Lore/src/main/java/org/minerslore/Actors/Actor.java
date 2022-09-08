@@ -24,7 +24,7 @@ public class Actor extends Interact_Objects {
     }
 
     public void setGoldKG(int kg) {
-        this.goldKG = kg;
+        this.goldKG = this.goldKG + kg;
     }
 
     public void moveActor(Interact_Objects nextBlock) throws IOException {

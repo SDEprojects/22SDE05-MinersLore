@@ -130,7 +130,7 @@ public class GameMap {
         }
     }
 
-    public static void moveMiner(char userCommand) throws InvocationTargetException, IllegalAccessException, NoSuchMethodException {
+    public static void handleCommand(char userCommand) throws InvocationTargetException, IllegalAccessException, NoSuchMethodException {
         ActionsDict.actorActions(miner,userCommand);
 
     }

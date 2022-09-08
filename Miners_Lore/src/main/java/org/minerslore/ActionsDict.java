@@ -50,7 +50,11 @@ public class ActionsDict {
     }
 
     public static void actionDig(Actor actor) {
-
+        Item block = (Item) actor.getOn_Block();
+        CavePath tile = (CavePath) block;
+        if (tile.isPath() == true) {
+            tile.interact(actor);
+        }
     }
 
     public static void actorActions(Actor actor, char ch) throws InvocationTargetException, IllegalAccessException, NoSuchMethodException {
