@@ -1,7 +1,7 @@
 package org.minerslore.mapping;
 
 import org.minerslore.Actors.Actor;
-import org.minerslore.Interact_Objects;
+import org.minerslore.GameEntity;
 import org.minerslore.mapitems.*;
 
 import java.awt.*;
@@ -44,27 +44,27 @@ public class GenerateMapDict {
             )
     );
 
-    public static void charToWallAddToMap(ArrayList<Interact_Objects> mapObjectList, Point point, char ch) {
-        ((ArrayList<Interact_Objects>) mapObjectList).add(new Wall(point));
+    public static void charToWallAddToMap(ArrayList<GameEntity> mapObjectList, Point point, char ch) {
+        ((ArrayList<GameEntity>) mapObjectList).add(new Wall(point));
     }
 
-    public static void charToDoorAddToMap(ArrayList<Interact_Objects> mapObjectList, Point point, char ch) {
-        ((ArrayList<Interact_Objects>) mapObjectList).add(new Door(point));
+    public static void charToDoorAddToMap(ArrayList<GameEntity> mapObjectList, Point point, char ch) {
+        ((ArrayList<GameEntity>) mapObjectList).add(new Door(point));
     }
 
-    public static void charToPathAddToMap(ArrayList<Interact_Objects> mapObjectList, Point point, char ch) {
-        ((ArrayList<Interact_Objects>) mapObjectList).add(new Path(point));
+    public static void charToPathAddToMap(ArrayList<GameEntity> mapObjectList, Point point, char ch) {
+        ((ArrayList<GameEntity>) mapObjectList).add(new Path(point));
     }
 
-    public static void charToCavePathAddToMap(ArrayList<Interact_Objects> mapObjectList, Point point, char ch) {
-        ((ArrayList<Interact_Objects>) mapObjectList).add(new CavePath(point, false));
+    public static void charToCavePathAddToMap(ArrayList<GameEntity> mapObjectList, Point point, char ch) {
+        ((ArrayList<GameEntity>) mapObjectList).add(new CavePath(point, false));
     }
 
-    public static void charToItemAddToMap(ArrayList<Interact_Objects> mapObjectList, Point point, char ch) {
-        ((ArrayList<Interact_Objects>) mapObjectList).add(new Item(ch, point, false));
+    public static void charToItemAddToMap(ArrayList<GameEntity> mapObjectList, Point point, char ch) {
+        ((ArrayList<GameEntity>) mapObjectList).add(new Item(ch, point, false));
     }
 
-    public static void addToMap(ArrayList<Interact_Objects> mapObjectList, Point point, char ch) throws InvocationTargetException, IllegalAccessException, NoSuchMethodException {
+    public static void addToMap(ArrayList<GameEntity> mapObjectList, Point point, char ch) throws InvocationTargetException, IllegalAccessException, NoSuchMethodException {
         if (to_Map_Functions.containsKey(ch)) {
             minerObj.getClass().getMethod(to_Map_Functions.get(ch), paramBuildMapTypes).invoke(to_Map_Functions.get(ch), mapObjectList, point, ch);
 

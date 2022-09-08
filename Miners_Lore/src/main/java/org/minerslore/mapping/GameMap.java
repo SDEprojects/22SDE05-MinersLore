@@ -5,7 +5,7 @@ import org.minerslore.Actors.Actor;
 import org.minerslore.Actors.Miner;
 import org.minerslore.Actors.Monster;
 import org.minerslore.Actors.OldMan;
-import org.minerslore.Interact_Objects;
+import org.minerslore.GameEntity;
 import org.minerslore.Main;
 import org.yaml.snakeyaml.Yaml;
 
@@ -40,7 +40,7 @@ public class GameMap {
         int monsterStartX = 90;
         int monsterStartY = 102;
         generateHelpList();
-        List<ArrayList<Interact_Objects>> map = fetchStarterMap();
+        List<ArrayList<GameEntity>> map = fetchStarterMap();
 
         colSize = map.size();
         rowSize = map.get(0).size();
@@ -61,8 +61,8 @@ public class GameMap {
 
     }
 
-    public static List<ArrayList<Interact_Objects>> fetchStarterMap() {
-        List<ArrayList<Interact_Objects>> map = new ArrayList<>();
+    public static List<ArrayList<GameEntity>> fetchStarterMap() {
+        List<ArrayList<GameEntity>> map = new ArrayList<>();
         try {
 
             String row;
@@ -77,7 +77,7 @@ public class GameMap {
 
             while ((row = in.readLine()) != null) {
 
-                ArrayList<Interact_Objects> mapObjectList = new ArrayList<>();
+                ArrayList<GameEntity> mapObjectList = new ArrayList<>();
                 List<Character> charList = row.chars().mapToObj((i) -> Character.valueOf((char) i)).collect(Collectors.toList());
 
 
@@ -104,11 +104,11 @@ public class GameMap {
         int minerX = miner.getX();
         int minerY = miner.getY();
         StringBuilder sb = new StringBuilder();
-        Interact_Objects rootY = miner.getByIndex(((minerX + rowSize - DISPLAY_NUMBER) % rowSize), ((minerY + colSize - DISPLAY_NUMBER / 2) % colSize));
+        GameEntity rootY = miner.getByIndex(((minerX + rowSize - DISPLAY_NUMBER) % rowSize), ((minerY + colSize - DISPLAY_NUMBER / 2) % colSize));
 
         for (int y = 0; y < DISPLAY_NUMBER; y++) {
 
-            Interact_Objects rootX = rootY;
+            GameEntity rootX = rootY;
             for (int x = 0; x < DISPLAY_NUMBER * 2; x++) {
                 System.out.print(rootX);
                 rootX = rootX.getE();
@@ -118,14 +118,14 @@ public class GameMap {
         }
     }
 
-    public static void setLinkedObjects(List<ArrayList<Interact_Objects>> map) {
+    public static void setLinkedObjects(List<ArrayList<GameEntity>> map) {
         int colSize = map.size();
         for (int y = 0; y < colSize; y++) {
-            ArrayList<Interact_Objects> list = map.get(y);
+            ArrayList<GameEntity> list = map.get(y);
             int rowSize = list.size();
 
             for (int x = 0; x < rowSize; x++) {
-                Interact_Objects temp = list.get(x);
+                GameEntity temp = list.get(x);
                 temp.setN(map.get((y - 1 + colSize) % colSize).get(x));
                 temp.setS(map.get((y + 1 + colSize) % colSize).get(x));
                 temp.setE(map.get(y).get((x + 1 + rowSize) % rowSize));
@@ -152,7 +152,7 @@ public class GameMap {
 
     }
 
-    public static void addActorToMap(Actor actor, List<ArrayList<Interact_Objects>> map) {
+    public static void addActorToMap(Actor actor, List<ArrayList<GameEntity>> map) {
         int startx = actor.getX();
         int starty = actor.getY();
         actor.setOriginal_symbol(map.get(starty).get(startx));

@@ -1,25 +1,25 @@
 package org.minerslore.Actors;
 
-import org.minerslore.Interact_Objects;
+import org.minerslore.GameEntity;
 import org.minerslore.mapitems.Item;
 
 import java.awt.*;
 import java.io.IOException;
 
-public class Actor extends Interact_Objects {
+public class Actor extends GameEntity {
 
-    private Interact_Objects on_Block;
+    private GameEntity on_Block;
     private int goldKG;
 
     public Actor(char symbol, Point location) {
         super(symbol, location);
     }
 
-    public Interact_Objects getOn_Block() {
+    public GameEntity getOn_Block() {
         return on_Block;
     }
 
-    public void setOriginal_symbol(Interact_Objects original_symbol) {
+    public void setOriginal_symbol(GameEntity original_symbol) {
         this.on_Block = original_symbol;
     }
 
@@ -27,10 +27,10 @@ public class Actor extends Interact_Objects {
         this.goldKG = this.goldKG + kg;
     }
 
-    public void moveActor(Interact_Objects nextBlock) throws IOException {
+    public void moveActor(GameEntity nextBlock) throws IOException {
         if (nextBlock instanceof Item && ((Item) nextBlock).isPath()) {
             // Put original On-Block in actor's place
-            Interact_Objects prevBlock = this.on_Block;
+            GameEntity prevBlock = this.on_Block;
 //            prevBlock.setCurrent_symbol('!');
 
             // Replace Current block

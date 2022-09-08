@@ -1,11 +1,11 @@
 package org.minerslore.mapitems;
 
 import org.minerslore.Actors.Actor;
-import org.minerslore.Interact_Objects;
+import org.minerslore.GameEntity;
 
 import java.awt.*;
 
-public class Item extends Interact_Objects {
+public class Item extends GameEntity {
     private String Attributes;
     private boolean isPath;
 
