@@ -19,18 +19,18 @@ public class Main {
 
         Scanner reader = new Scanner(System.in);  // Reading from System.in
 
-        char Command = ' ';
-        while (Command!='q') {
+        char command = ' ';
+        while (command!='q') {
 
             map.displayMap();
 
             System.out.println("Enter");
-            Command = reader.next().toUpperCase().charAt(0);
+            command = reader.next().toUpperCase().charAt(0);
 
             // Clear Screen
             clearConsole();
 
-            map.handleCommand(Command);
+            map.handleCommand(command);
         }
 
     }
