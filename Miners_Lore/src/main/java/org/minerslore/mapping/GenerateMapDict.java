@@ -1,8 +1,8 @@
-package org.minerslore;
+package org.minerslore.mapping;
 
 import org.minerslore.Actors.Actor;
 import org.minerslore.Interact_Objects;
-import org.minerslore.Items.*;
+import org.minerslore.mapitems.*;
 
 import java.awt.*;
 import java.io.IOException;
@@ -17,7 +17,7 @@ public class GenerateMapDict {
 
     static {
         try {
-            minerObj = Class.forName("org.minerslore.GenerateMapDict").getDeclaredConstructor().newInstance();
+            minerObj = Class.forName("org.minerslore.mapping.GenerateMapDict").getDeclaredConstructor().newInstance();
         } catch (InstantiationException | ClassNotFoundException | NoSuchMethodException | RuntimeException |
                  InvocationTargetException | IllegalAccessException e) {
             throw new RuntimeException(e);

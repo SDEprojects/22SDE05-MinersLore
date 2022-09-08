@@ -1,7 +1,7 @@
 package org.minerslore.Actors;
 
 import org.minerslore.Main;
-import org.minerslore.Story;
+import org.minerslore.stories.Story;
 import org.yaml.snakeyaml.Yaml;
 
 import java.awt.*;
