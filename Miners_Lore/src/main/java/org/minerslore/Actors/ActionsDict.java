@@ -48,9 +48,8 @@ public class ActionsDict {
 
     public static void actionDig(Actor actor) {
         Item block = (Item) actor.getOn_Block();
-        CavePath tile = (CavePath) block;
-        if (tile.isPath() == true) {
-            tile.interact(actor);
+        if (block instanceof CavePath && block.isPath()) {
+            ((CavePath)block).interact(actor);
         }
     }
 
