@@ -4,12 +4,14 @@ import org.minerslore.Main;
 import org.yaml.snakeyaml.Yaml;
 
 import java.io.*;
+import java.util.Map;
 import java.util.Scanner;
 
 public class Story {
 
     static Scanner stringScanner = new Scanner(System.in); // Scanner that takes string input
     public static Scanner intScanner = new Scanner(System.in); // Scanner that takes int input
+    static Map<String, Object> obj;
 
     public void mainStory() throws IOException {
         loadStoryYaml();
@@ -63,7 +65,7 @@ public class Story {
 
         Yaml yaml = new Yaml();
 
-        java.util.Map<String, Object> obj = yaml.load(input);
+        Map<String, Object> obj = yaml.load(input);
 
         BufferedReader in = new BufferedReader(new StringReader(obj.get("Splash1").toString()));
 
@@ -78,7 +80,7 @@ public class Story {
 
         Yaml yaml = new Yaml();
 
-        java.util.Map<String, Object> obj = yaml.load(input);
+        obj = yaml.load(input);
 
         BufferedReader in = new BufferedReader(new StringReader(obj.get("STORY").toString()));
         System.out.println(obj.get("Start"));
