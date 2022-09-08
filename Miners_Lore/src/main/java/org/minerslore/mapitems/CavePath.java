@@ -10,6 +10,7 @@ public class CavePath extends Item {
     private boolean isDug;
     private static final String ANSI_YELLOW = "\u001B[33m";
     public static final String ANSI_RESET = "\u001B[0m";
+    public static final String ANSI_BLACK = "\u001B[30m";
 
     private static final char SYMBOL = '.';
     private static final String MESSAGE = "Path walkable. This path can be mined.";
@@ -22,8 +23,8 @@ public class CavePath extends Item {
     public static void interact(Actor actor) {
         Item block = (Item) actor.getOn_Block();
         CavePath tile = (CavePath) block;
-        if (tile.getIsDug() == false) {
-            tile.setIsDug();
+        if (tile.isDug() == false) {
+            tile.setDug();
             int randomGoldKG = 0;
             double probability = Math.random();
             if (probability <= .25) {
@@ -36,21 +37,25 @@ public class CavePath extends Item {
             } else {
                 System.out.println("No gold here. Keep it moving, miner!");
             }
-        } else if (tile.getIsDug() == true) {
+        } else if (tile.isDug() == true) {
             System.out.println("You've already dug here. Keep it moving, miner!");
         }
     }
 
-    public void setIsDug(){
+    public void setDug(){
         this.isDug = true;
     };
 
-    public boolean getIsDug(){
+    public boolean isDug(){
         return isDug;
     }
 
     @Override
     public String toString() {
-        return ANSI_YELLOW + super.toString() + ANSI_RESET;
+        if (isDug == true) {
+            return ANSI_BLACK + super.toString() + ANSI_RESET;
+        } else {
+            return ANSI_YELLOW + super.toString() + ANSI_RESET;
+        }
     }
 }
