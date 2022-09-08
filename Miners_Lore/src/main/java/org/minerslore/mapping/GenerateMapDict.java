@@ -57,7 +57,7 @@ public class GenerateMapDict {
     }
 
     public static void charToCavePathAddToMap(ArrayList<Interact_Objects> mapObjectList, Point point, char ch) {
-        ((ArrayList<Interact_Objects>) mapObjectList).add(new CavePath(point));
+        ((ArrayList<Interact_Objects>) mapObjectList).add(new CavePath(point, false));
     }
 
     public static void charToItemAddToMap(ArrayList<Interact_Objects> mapObjectList, Point point, char ch) {
