@@ -22,7 +22,7 @@ public class CavePath extends Item {
     public static void interact(Actor actor) {
         Item block = (Item) actor.getOn_Block();
         CavePath tile = (CavePath) block;
-        if (tile.IsDug() == false) {
+        if (tile.isDug() == false) {
             tile.setDug();
             int randomGoldKG = 0;
             double probability = Math.random();
@@ -36,7 +36,7 @@ public class CavePath extends Item {
             } else {
                 System.out.println("No gold here. Keep it moving, miner!");
             }
-        } else if (tile.IsDug() == true) {
+        } else if (tile.isDug() == true) {
             System.out.println("You've already dug here. Keep it moving, miner!");
         }
     }
@@ -45,7 +45,7 @@ public class CavePath extends Item {
         this.isDug = true;
     };
 
-    public boolean IsDug(){
+    public boolean isDug(){
         return isDug;
     }
 
