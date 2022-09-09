@@ -2,9 +2,11 @@ package org.minerslore.mapitems;
 
 import org.minerslore.Actors.Actor;
 import org.minerslore.Main;
+import org.minerslore.stories.PrintStoriesToConsole;
 import org.yaml.snakeyaml.Yaml;
 
 import java.awt.*;
+import java.io.IOException;
 import java.util.Map;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -26,15 +28,15 @@ public class CavePath extends Item {
     }
 
     public static void interact(Actor actor) {
-
-        ClassLoader cl = Main.class.getClassLoader();
-        java.io.InputStream input = cl.getResourceAsStream("Rand.yaml");
-        Yaml yaml = new Yaml();
-        obj = yaml.load(input);
+        try {
+            obj = PrintStoriesToConsole.parseYaml();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
 
         Item block = (Item) actor.getOn_Block();
         CavePath tile = (CavePath) block;
-        if (tile.isDug() == false) {
+        if (!tile.isDug()) {
             tile.setDug();
             int randomGoldKG = 0;
             double probability = Math.random();
@@ -48,7 +50,7 @@ public class CavePath extends Item {
             } else {
                 System.out.println(obj.get(5));
             }
-        } else if (tile.isDug() == true) {
+        } else if (tile.isDug()) {
             System.out.println(obj.get(6));
         }
     }

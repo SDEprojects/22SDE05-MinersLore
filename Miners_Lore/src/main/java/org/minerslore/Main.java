@@ -5,6 +5,7 @@ import org.minerslore.stories.Story;
 import org.yaml.snakeyaml.Yaml;
 
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -13,7 +14,7 @@ public class Main {
 
     static Map<String, Object> obj;
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws IOException, InvocationTargetException, IllegalAccessException, NoSuchMethodException {
 
         ClassLoader cl = Main.class.getClassLoader();
         java.io.InputStream input = cl.getResourceAsStream("Rand.yaml");

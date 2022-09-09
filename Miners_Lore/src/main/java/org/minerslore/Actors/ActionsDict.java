@@ -65,13 +65,13 @@ public class ActionsDict {
         }
     }
 
-    public static void actorActions(Actor actor, char ch) throws InvocationTargetException, IllegalAccessException, NoSuchMethodException {
+    public static void actorActions(Actor actor, char ch) throws InvocationTargetException, IllegalAccessException, NoSuchMethodException, IOException {
 
         if (userCommands.containsKey(ch)) {
             System.out.println(ch);
             minerObj.getClass().getMethod(userCommands.get(ch), paramUserCommandTypes).invoke(userCommands.get(ch), actor);
         } else {
-            PrintStoriesToConsole.parseYaml();
+            obj = PrintStoriesToConsole.parseYaml();
             System.out.println(obj.get(1));
         }
     }

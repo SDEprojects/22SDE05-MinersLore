@@ -145,7 +145,7 @@ public class GameMap {
         }
     }
 
-    public static void handleCommand(char userCommand) throws InvocationTargetException, IllegalAccessException, NoSuchMethodException {
+    public static void handleCommand(char userCommand) throws InvocationTargetException, IllegalAccessException, NoSuchMethodException, IOException {
         ActionsDict.actorActions(miner,userCommand);
 
     }
