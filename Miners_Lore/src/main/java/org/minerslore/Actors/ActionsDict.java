@@ -25,11 +25,12 @@ public class ActionsDict {
 
     static Class<?>[] paramUserCommandTypes = {Actor.class};
     public static Map<Character, String> userCommands = new HashMap<>(
-            Map.of('N', "goNorth",
+            Map.of('W', "goNorth",
                     'S', "goSouth",
-                    'E', "goEast",
-                    'W', "goWest",
-                    'D', "actionDig"
+                    'D', "goEast",
+                    'A', "goWest",
+                    'G', "actionDig",
+                    'Q',"quitGame"
             )
     );
 
@@ -47,6 +48,9 @@ public class ActionsDict {
 
     public static void goWest(Actor actor) throws IOException {
         actor.moveActor(actor.getW());
+    }
+    public static void quitGame(Actor actor) throws IOException {
+        System.out.println("Miner is leaving town, with "+actor.getGoldKG()+" Gold.");
     }
 
     public static void actionDig(Actor actor) {

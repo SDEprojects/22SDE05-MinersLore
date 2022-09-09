@@ -1,0 +1,17 @@
+Help:
+   - . . . . . . . . .. . . . . . . . . . .
+   - . Go North  -> W            N        .
+   - . Go South  -> S           )^(       .
+   - . Go West   -> A         )  |  (     .
+   - . Go East   -> D       W----O----E   .
+   - .                        )  |  (     .
+   - . Mine Gold -> G           )|(       .
+   - .                           S        .
+   - . . . . . . . . .. . . . . . . . . . .
+Gold: 0
+Equipment:
+   Inventory: Current
+   Keys: 1
+   Sword: _
+   Pickaxe: _
+   FlashLight: _

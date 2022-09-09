@@ -101,12 +101,11 @@ public class GameMap {
     }
 
     public static void displayMap() {
-
         int minerX = miner.getX();
         int minerY = miner.getY();
-        List<String> outPutString = new ArrayList();
         GameEntity rootY = miner.getByIndex(((minerX + rowSize - DISPLAY_NUMBER) % rowSize), ((minerY + colSize - DISPLAY_NUMBER / 2) % colSize));
-
+        List tempEquipKeys = List.of(minersEquipment.keySet().toArray());
+        List tempEquipValues = List.of(minersEquipment.values().toArray());
         for (int y = 0; y < DISPLAY_NUMBER; y++) {
             StringBuilder sb = new StringBuilder();
             GameEntity rootX = rootY;
@@ -115,23 +114,17 @@ public class GameMap {
                 sb.append(rootX);
                 rootX = rootX.getE();
             }
-            outPutString.add(sb.toString());
-
+            if (y < helpList.size()) {
+                System.out.println(sb.toString() +"\t\t"+ helpList.get(y));
+            }   else if (y == helpList.size() ) {
+                System.out.println(sb.toString() +"\t\tGold: " + "gold" + "KG");
+            }else if (y > helpList.size()+2 && y < helpList.size() + tempEquipKeys.size()+4) {
+                System.out.println(sb.toString() +"\t\t"+ tempEquipKeys.get(y - helpList.size()-3) + "\t" + tempEquipValues.get(y - helpList.size()-3));
+            } else {
+                System.out.println(sb);
+            }
             rootY = rootY.getS();
         }
-        List tempEquipKeys= List.of(minersEquipment.keySet().toArray());
-        List tempEquipValues= List.of(minersEquipment.values().toArray());
-        int helpListSize = helpList.size();
-        for (int i = 0; i < outPutString.size(); i++) {
-            if (i < helpListSize) {
-                System.out.println(outPutString.get(i) + "\t" + helpList.get(i));
-            } else if (i < helpListSize + tempEquipKeys.size() && !tempEquipValues.get(i-helpListSize).equals("_")) {
-                System.out.println(outPutString.get(i) + "\t" + tempEquipKeys.get(i-helpListSize)+":\t"+tempEquipValues.get(i-helpListSize));
-            } else {
-                System.out.println(outPutString.get(i));
-            }
-        }
-
     }
 
 
@@ -160,7 +153,7 @@ public class GameMap {
 
     public static void generateHelpList() {
         ClassLoader cld = Main.class.getClassLoader();
-        InputStream streamMapYaml = cld.getResourceAsStream("help.yaml");
+        InputStream streamMapYaml = cld.getResourceAsStream("helpBar.yaml");
 
         Yaml yaml = new Yaml();
 

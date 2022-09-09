@@ -32,17 +32,16 @@ public class Main {
         Scanner reader = new Scanner(System.in);  // Reading from System.in
 
         char command = ' ';
-        while (command!='q') {
+        while (command!='Q') {
 
             map.displayMap();
 
-            System.out.println(obj.get(7));
-            command = reader.next().toUpperCase().charAt(0);
+            System.out.println("Enter");
 
             // Clear Screen
             clearConsole();
+            map.handleCommand(reader.next().toUpperCase().charAt(0));
 
-            map.handleCommand(command);
         }
 
     }
