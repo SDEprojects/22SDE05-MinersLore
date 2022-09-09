@@ -37,10 +37,10 @@ public class Main {
             map.displayMap();
 
             System.out.println("Enter");
-
+            command=reader.next().toUpperCase().charAt(0);
             // Clear Screen
             clearConsole();
-            map.handleCommand(reader.next().toUpperCase().charAt(0));
+            map.handleCommand(command);
 
         }
 
