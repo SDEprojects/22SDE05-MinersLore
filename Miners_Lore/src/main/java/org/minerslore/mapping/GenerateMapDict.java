@@ -37,14 +37,7 @@ public class GenerateMapDict {
                     '+', "charToJewelAddToMap"
             )
     );
-    public static Map<Character, String> userCommands = new HashMap<>(
-            Map.of('N', "goNorth",
-                    'S', "goSouth",
-                    'E', "goEast",
-                    'W', "goWest",
-                    'D', "actionDig"
-            )
-    );
+
 
     public static void charToWallAddToMap(ArrayList<GameEntity> mapObjectList, Point point, char ch) {
         ((ArrayList<GameEntity>) mapObjectList).add(new Wall(point));
@@ -84,9 +77,7 @@ public class GenerateMapDict {
         }
     }
 
-    public static boolean commandContains(char ch) {
-        return to_Map_Functions.containsKey(ch);
-    }
+
 
 
 }

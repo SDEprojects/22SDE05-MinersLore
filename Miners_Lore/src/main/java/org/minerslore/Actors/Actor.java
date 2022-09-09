@@ -76,4 +76,19 @@ public class Actor extends GameEntity {
     public int getGoldKG() {
         return goldKG;
     }
+
+//    public void setGoldKG(int kg) throws IOException {
+//        this.goldKG = this.goldKG + kg;
+//        String yamlPath = "Miners_Lore/src/main/resources/help.yaml";
+//        Map<String, Object> yaml = new Yaml().load(new FileReader(yamlPath));
+//        yaml.put("Gold", this.goldKG);
+//        String yamlModifiedPath = "Miners_Lore/src/main/resources/help.yaml";
+//        DumperOptions options = new DumperOptions();
+//        options.setDefaultFlowStyle(DumperOptions.FlowStyle.BLOCK);
+//        String output = new Yaml(options).dump(yaml);
+//        try (FileWriter fw = new
+//                FileWriter(yamlModifiedPath)) {
+//            fw.write(output);
+//        }
+//    }
 }
