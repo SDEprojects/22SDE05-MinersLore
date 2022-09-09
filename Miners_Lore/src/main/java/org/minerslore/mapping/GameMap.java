@@ -35,8 +35,8 @@ public class GameMap {
         int minerStartX = 98;
         int minerStartY = 102;
 
-        int oldManStartX = 96;
-        int oldManStartY = 105;
+        int oldManStartX = 97;
+        int oldManStartY = 112;
 
         int monsterStartX = 90;
         int monsterStartY = 102;
@@ -158,7 +158,12 @@ public class GameMap {
         Yaml yaml = new Yaml();
 
         Map<String, Object> tempHelp = yaml.load(streamMapYaml);
-        helpList = (ArrayList<String>) tempHelp.get("Help");
+        helpList = ((ArrayList<String>) tempHelp.get("Help")).stream()
+                .map(x->x.replace('5', (char) 0x00D1))
+                .map(x->x.replace('.', (char) ' '))
+                .collect(Collectors.toList());
+
+
         minersEquipment = (Map<String, Object>) tempHelp.get("Equipment");
 
     }
