@@ -1,18 +1,23 @@
 package org.minerslore.mapitems;
 
 import org.minerslore.Actors.Actor;
+import org.minerslore.Main;
+import org.yaml.snakeyaml.Yaml;
 
 import java.awt.*;
+import java.util.Map;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class CavePath extends Item {
+    static Map<String, Object> obj;
+
     private int gold;
     private boolean isDug;
     private static final String ANSI_YELLOW = "\u001B[33m";
     public static final String ANSI_RESET = "\u001B[0m";
     public static final String ANSI_BLACK = "\u001B[30m";
 
-    private static final char SYMBOL = '.';
+    private static char SYMBOL = '.';
     private static final String MESSAGE = "Path walkable. This path can be mined.";
 
     public CavePath(Point position, boolean isDug) {
@@ -21,6 +26,12 @@ public class CavePath extends Item {
     }
 
     public static void interact(Actor actor) {
+
+        ClassLoader cl = Main.class.getClassLoader();
+        java.io.InputStream input = cl.getResourceAsStream("Rand.yaml");
+        Yaml yaml = new Yaml();
+        obj = yaml.load(input);
+
         Item block = (Item) actor.getOn_Block();
         CavePath tile = (CavePath) block;
         if (tile.isDug() == false) {
@@ -35,15 +46,20 @@ public class CavePath extends Item {
                     System.out.println("So far, you have have collected " + actor.getGoldKG() + "KG!");
                 }
             } else {
-                System.out.println("No gold here. Keep it moving, miner!");
+                System.out.println(obj.get(5));
             }
         } else if (tile.isDug() == true) {
-            System.out.println("You've already dug here. Keep it moving, miner!");
+            System.out.println(obj.get(6));
         }
+    }
+
+    public static void setSYMBOL(char SYMBOL) {
+        CavePath.SYMBOL = SYMBOL;
     }
 
     public void setDug(){
         this.isDug = true;
+        this.setCurrent_symbol(' ');
     };
 
     public boolean isDug(){
@@ -52,10 +68,6 @@ public class CavePath extends Item {
 
     @Override
     public String toString() {
-        if (isDug == true) {
-            return ANSI_BLACK + super.toString() + ANSI_RESET;
-        } else {
-            return ANSI_YELLOW + super.toString() + ANSI_RESET;
-        }
+        return ANSI_YELLOW + super.toString() + ANSI_RESET;
     }
 }

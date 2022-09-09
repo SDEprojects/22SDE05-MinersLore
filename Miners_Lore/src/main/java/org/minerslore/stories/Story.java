@@ -14,10 +14,20 @@ public class Story {
     static Map<String, Object> obj;
 
     public void mainStory() throws IOException {
+
+        ClassLoader cl = Main.class.getClassLoader();
+        java.io.InputStream input = cl.getResourceAsStream("Rand.yaml");
+        Yaml yaml = new Yaml();
+        obj = yaml.load(input);
+
+        loadSplashYaml();
         loadStoryYaml();
+
+        System.out.println(obj.get("Continue"));
+
         askQuestions();
         int minerDecision = intScanner.nextInt();
-        System.out.println(minerDecision);
+
         playerChoices(minerDecision);
 
     }
@@ -26,36 +36,25 @@ public class Story {
 
         switch (minerDecision) {
             case 1:
-                System.out.println
-                        ("Miner: Hey what did you mean in case I dont make it out?" + "\n\n" +
-                                "Old Man: That's because most of you greedy folks get eaten up by the TommyKnocker. " + "\n\n" +
-                                "Narrator/Miner: He let out a creepy cackle... Hahahaha...cough....hahah. No more questions Sonny. " +
-                                "\n\n" +
-                                "Narrator: Then he limped off into the hot desert air and disappeared into the distance." + "\n\n\n"
-                        );
+                System.out.println(obj.get(1));
                 askQuestions();
                 int minerDecision2 = intScanner.nextInt();
                 playerChoices(minerDecision2);
                 break;
             case 2:
-                System.out.println("You've entered the store. Please select your items." + "\n\n\n");
+                System.out.println(obj.get(2));
                 break;
             case 3:
-                System.out.println("GAME OVER! GOODBYE!" + "\n");
+                System.out.println(obj.get(3));
                 System.exit(0);
                 break;
             default:
-                System.out.println("Please enter a valid number." + "\n\n\n");
+                    System.out.println(obj.get("INVALID")); //TODO: CANNOT FIGURE THIS PART OUT
         }
     }
 
     public static void askQuestions() {
-        System.out.println
-                ("What would you like to do next?" + "\n" +
-                        "-------------------------------" + "\n" +
-                        "1. Ask the old man what he meant by his sullen words. " + "\n" +
-                        "2. Enter the store to collect your necessities. " + "\n" +
-                        "3. Exit the game." + "\n");
+        System.out.println(obj.get("Continue1"));
     }
 
     public static void loadSplashYaml() {
@@ -67,7 +66,7 @@ public class Story {
 
         Map<String, Object> obj = yaml.load(input);
 
-        BufferedReader in = new BufferedReader(new StringReader(obj.get("Splash1").toString()));
+//        BufferedReader in = new BufferedReader(new StringReader(obj.get("Splash1").toString()));
 
         System.out.println(obj.get("Splash1"));
 
@@ -82,7 +81,7 @@ public class Story {
 
         obj = yaml.load(input);
 
-        BufferedReader in = new BufferedReader(new StringReader(obj.get("STORY").toString()));
+//        BufferedReader in = new BufferedReader(new StringReader(obj.get("STORY").toString()));
         System.out.println(obj.get("Start"));
 
     }
