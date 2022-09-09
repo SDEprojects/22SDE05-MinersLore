@@ -17,7 +17,7 @@ public class CavePath extends Item {
     public static final String ANSI_RESET = "\u001B[0m";
     public static final String ANSI_BLACK = "\u001B[30m";
 
-    private static final char SYMBOL = '.';
+    private static char SYMBOL = '.';
     private static final String MESSAGE = "Path walkable. This path can be mined.";
 
     public CavePath(Point position, boolean isDug) {
@@ -53,8 +53,13 @@ public class CavePath extends Item {
         }
     }
 
+    public static void setSYMBOL(char SYMBOL) {
+        CavePath.SYMBOL = SYMBOL;
+    }
+
     public void setDug(){
         this.isDug = true;
+        this.setCurrent_symbol(' ');
     };
 
     public boolean isDug(){
@@ -63,10 +68,6 @@ public class CavePath extends Item {
 
     @Override
     public String toString() {
-        if (isDug == true) {
-            return ANSI_BLACK + super.toString() + ANSI_RESET;
-        } else {
-            return ANSI_YELLOW + super.toString() + ANSI_RESET;
-        }
+        return ANSI_YELLOW + super.toString() + ANSI_RESET;
     }
 }
