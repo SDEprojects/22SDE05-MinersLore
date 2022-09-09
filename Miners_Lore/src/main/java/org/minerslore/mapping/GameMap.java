@@ -35,8 +35,8 @@ public class GameMap {
         int minerStartX = 98;
         int minerStartY = 102;
 
-        int oldManStartX = 96;
-        int oldManStartY = 105;
+        int oldManStartX = 97;
+        int oldManStartY = 112;
 
         int monsterStartX = 90;
         int monsterStartY = 102;
