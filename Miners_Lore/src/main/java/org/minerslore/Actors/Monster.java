@@ -7,8 +7,10 @@ import java.awt.*;
 
 public class Monster extends Actor {
 
-    private static final char SYMBOL = '!';
+    private static final char SYMBOL = 0x00A5;
     private static final String MESSAGE = "Gold stealing creature of lore.";
+    public static final String TEXT_RED = "\u001B[31m";
+    public static final String ANSI_RESET = "\u001B[0m";
     public Monster(char symbol, Point location) {
         super(SYMBOL, location);
     }
@@ -36,5 +38,10 @@ public class Monster extends Actor {
 
     public void encounter() {
 
+    }
+
+    @Override
+    public String toString() {
+        return TEXT_RED  + super.toString() + ANSI_RESET;
     }
 }

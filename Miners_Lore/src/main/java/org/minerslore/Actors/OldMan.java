@@ -10,7 +10,7 @@ import java.util.Map;
 
 public class OldMan extends Actor {
 
-    private static final char SYMBOL = 'O';
+    private static final char SYMBOL = 0x00F6;
     private static final String MESSAGE = "Old man";
     Map<String, Object> Story;
 

@@ -4,7 +4,7 @@ import java.awt.*;
 
 public class Miner extends Actor {
 
-    private static char SYMBOL = 'M';
+    private static char SYMBOL = 0x00A3;
     private static final String MESSAGE = "Gold stealing creature of lore.";
 
     public Miner(char symbol, Point location) {

@@ -34,7 +34,9 @@ public class GenerateMapDict {
                     '.', "charToCavePathAddToMap",
                     '*', "charToItemAddToMap",
                     '-', "charToBoundaryAddToMap",
-                    '+', "charToJewelAddToMap"
+                    '+', "charToJewelAddToMap",
+                    'w', "charToWaterAddToMap",
+                    ',',"charToGrassAddToMap"
             )
     );
 
@@ -65,6 +67,12 @@ public class GenerateMapDict {
 
     public static void charToJewelAddToMap(ArrayList<GameEntity> mapObjectList, Point point, char ch) {
         ((ArrayList<GameEntity>) mapObjectList).add(new Jewel(point));
+    }
+    public static void charToWaterAddToMap(ArrayList<GameEntity> mapObjectList, Point point, char ch) {
+        ((ArrayList<GameEntity>) mapObjectList).add(new Water(point));
+    }
+    public static void charToGrassAddToMap(ArrayList<GameEntity> mapObjectList, Point point, char ch) {
+        ((ArrayList<GameEntity>) mapObjectList).add(new Grass(point));
     }
 
     public static void addToMap(ArrayList<GameEntity> mapObjectList, Point point, char ch) throws InvocationTargetException, IllegalAccessException, NoSuchMethodException {
