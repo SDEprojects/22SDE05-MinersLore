@@ -1,11 +1,16 @@
 package org.minerslore.mapitems;
 
 import org.minerslore.Actors.Actor;
+import org.minerslore.Main;
+import org.yaml.snakeyaml.Yaml;
 
 import java.awt.*;
+import java.util.Map;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class CavePath extends Item {
+    static Map<String, Object> obj;
+
     private int gold;
     private boolean isDug;
     private static final String ANSI_YELLOW = "\u001B[33m";
@@ -21,6 +26,12 @@ public class CavePath extends Item {
     }
 
     public static void interact(Actor actor) {
+
+        ClassLoader cl = Main.class.getClassLoader();
+        java.io.InputStream input = cl.getResourceAsStream("Rand.yaml");
+        Yaml yaml = new Yaml();
+        obj = yaml.load(input);
+
         Item block = (Item) actor.getOn_Block();
         CavePath tile = (CavePath) block;
         if (tile.isDug() == false) {
@@ -35,10 +46,10 @@ public class CavePath extends Item {
                     System.out.println("So far, you have have collected " + actor.getGoldKG() + "KG!");
                 }
             } else {
-                System.out.println("No gold here. Keep it moving, miner!");
+                System.out.println(obj.get(5));
             }
         } else if (tile.isDug() == true) {
-            System.out.println("You've already dug here. Keep it moving, miner!");
+            System.out.println(obj.get(6));
         }
     }
 
