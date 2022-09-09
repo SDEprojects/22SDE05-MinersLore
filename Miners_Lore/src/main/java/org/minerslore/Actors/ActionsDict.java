@@ -2,16 +2,19 @@ package org.minerslore.Actors;
 
 import org.minerslore.Main;
 import org.minerslore.mapitems.*;
+import org.minerslore.stories.PrintStoriesToConsole;
 import org.yaml.snakeyaml.Yaml;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.Map;
 
+import static org.minerslore.stories.PrintStoriesToConsole.parseYaml;
+
 // Our Dictionary
 public class ActionsDict {
     static Object minerObj; // convert string classname to class
-
     static Map<String, Object> obj;
 
     static {
@@ -64,11 +67,7 @@ public class ActionsDict {
             System.out.println(ch);
             minerObj.getClass().getMethod(userCommands.get(ch), paramUserCommandTypes).invoke(userCommands.get(ch), actor);
         } else {
-            ClassLoader cl = Main.class.getClassLoader();
-            java.io.InputStream input = cl.getResourceAsStream("Rand.yaml");
-            Yaml yaml = new Yaml();
-            obj = yaml.load(input);
-
+            PrintStoriesToConsole.parseYaml();
             System.out.println(obj.get(1));
         }
     }

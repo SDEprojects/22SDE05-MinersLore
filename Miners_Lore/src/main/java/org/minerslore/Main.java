@@ -1,6 +1,5 @@
 package org.minerslore;
 
-
 import org.minerslore.mapping.GameMap;
 import org.minerslore.stories.Story;
 import org.yaml.snakeyaml.Yaml;
