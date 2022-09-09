@@ -17,7 +17,7 @@ public class CavePath extends Item {
     public static final String ANSI_RESET = "\u001B[0m";
     public static final String ANSI_BLACK = "\u001B[30m";
 
-    private static char SYMBOL = '.';
+    private static char SYMBOL = 0x00A4;
     private static final String MESSAGE = "Path walkable. This path can be mined.";
 
     public CavePath(Point position, boolean isDug) {

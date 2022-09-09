@@ -7,7 +7,7 @@ import java.awt.*;
 
 public class Monster extends Actor {
 
-    private static final char SYMBOL = '!';
+    private static final char SYMBOL = 0x00A5;
     private static final String MESSAGE = "Gold stealing creature of lore.";
     public Monster(char symbol, Point location) {
         super(SYMBOL, location);
