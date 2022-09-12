@@ -1,11 +1,10 @@
-package org.minerslore.mapitems;
+package org.minerslore.GameEntities.mapitems;
 
-import org.minerslore.actors.Actor;
+import org.minerslore.GameEntities.actors.Actor;
 
 import java.awt.*;
 
-//\u001B[32m	GREEN_BACKGROUND	\u001B[42m #F3FEED
-public class Jewel extends Item implements Interactable  {
+public class Jewel extends Item implements Interactable {
 
     private static final char SYMBOL = '+';
     private static final String MESSAGE = "A priceless jewel!";
@@ -15,9 +14,13 @@ public class Jewel extends Item implements Interactable  {
         super(SYMBOL, position, true);
     }
 
-    public void interact(Actor actor) {
+    public final void interact(Actor actor) {
 
         System.out.println(MESSAGE);
+    }
+
+    public final String inspect() {
+        return MESSAGE;
     }
 
     @Override

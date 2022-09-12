@@ -1,12 +1,12 @@
-package org.minerslore.actors;
+package org.minerslore.GameEntities.actors;
 
-import org.minerslore.GameEntity;
-import org.minerslore.mapitems.Item;
+import org.minerslore.GameEntities.GameEntity;
+import org.minerslore.GameEntities.mapitems.Item;
 
 import java.awt.*;
 import java.io.IOException;
 
-public class Actor extends GameEntity  {
+public class Actor extends GameEntity implements Encounterable {
 
     private Item on_Block;
     private int goldKG;
@@ -19,7 +19,7 @@ public class Actor extends GameEntity  {
         return on_Block;
     }
 
-    public void setOriginal_symbol(Item original_symbol) {
+    public void setOnBlock(Item original_symbol) {
         this.on_Block = original_symbol;
     }
 
@@ -29,11 +29,8 @@ public class Actor extends GameEntity  {
 
     public void moveActor(GameEntity nextBlock) throws IOException {
         if (nextBlock instanceof Item && ((Item) nextBlock).isPath()) {
-            // Put original On-Block in actor's place
-            GameEntity prevBlock = this.on_Block;
-//            prevBlock.setCurrent_symbol('!');
 
-            // Replace Current block
+            GameEntity prevBlock = this.on_Block;
 
             prevBlock.setE(this.getE());
             prevBlock.setW(this.getW());
@@ -61,8 +58,8 @@ public class Actor extends GameEntity  {
             this.getE().setW(this);
             this.getW().setE(this);
             this.setPosition(nextBlock.getPosition());
-        } else if (nextBlock instanceof Actor) {
-            ((Actor) nextBlock).encounter();
+        } else if (nextBlock instanceof Encounterable) {
+            ((Encounterable) nextBlock).encounter();
 
         }
 
@@ -77,18 +74,4 @@ public class Actor extends GameEntity  {
         return goldKG;
     }
 
-//    public void setGoldKG(int kg) throws IOException {
-//        this.goldKG = this.goldKG + kg;
-//        String yamlPath = "Miners_Lore/src/main/resources/help.yaml";
-//        Map<String, Object> yaml = new Yaml().load(new FileReader(yamlPath));
-//        yaml.put("Gold", this.goldKG);
-//        String yamlModifiedPath = "Miners_Lore/src/main/resources/help.yaml";
-//        DumperOptions options = new DumperOptions();
-//        options.setDefaultFlowStyle(DumperOptions.FlowStyle.BLOCK);
-//        String output = new Yaml(options).dump(yaml);
-//        try (FileWriter fw = new
-//                FileWriter(yamlModifiedPath)) {
-//            fw.write(output);
-//        }
-//    }
 }

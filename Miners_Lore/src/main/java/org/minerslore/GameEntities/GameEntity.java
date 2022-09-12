@@ -1,6 +1,4 @@
-package org.minerslore;
-
-import org.minerslore.actors.Actor;
+package org.minerslore.GameEntities;
 
 import java.awt.*;
 
@@ -17,64 +15,64 @@ public abstract class GameEntity {
         this.position = location;
     }
 
-    public int getX() {
+    public final int getX() {
         return this.position.x;
     }
 
     ;
 
-    public int getY() {
+    public final int getY() {
         return this.position.y;
     }
 
     ;
 
-    public char getSymbol() {
+    public final char getSymbol() {
         return this.current_symbol;
     }
 
-    public GameEntity getN() {
+    public final GameEntity getN() {
         return N;
     }
 
-    public GameEntity getS() {
+    public final GameEntity getS() {
         return S;
     }
 
-    public GameEntity getE() {
+    public final GameEntity getE() {
         return E;
     }
 
-    public GameEntity getW() {
+    public final GameEntity getW() {
         return W;
     }
 
-    public void setN(GameEntity n) {
+    public final void setN(GameEntity n) {
         N = n;
     }
 
-    public void setS(GameEntity s) {
+    public final void setS(GameEntity s) {
         S = s;
     }
 
 
-    public void setE(GameEntity e) {
+    public final void setE(GameEntity e) {
         E = e;
     }
 
-    public void setW(GameEntity w) {
+    public final void setW(GameEntity w) {
         W = w;
     }
 
-    public Point getPosition() {
+    public final Point getPosition() {
         return position;
     }
 
-    public void setCurrent_symbol(char current_symbol) {
+    public final void setCurrent_symbol(char current_symbol) {
         this.current_symbol = current_symbol;
     }
 
-    public void setPosition(Point position) {
+    public final void setPosition(Point position) {
         this.position = position;
     }
 
@@ -83,8 +81,8 @@ public abstract class GameEntity {
         return String.valueOf(current_symbol);
     }
 
-    public GameEntity getByIndex(int x, int y) {
-        GameEntity temp = S;
+    public final GameEntity getByIndex(int x, int y) {
+        GameEntity temp = this.S;
         while (temp.getY() != y) {
             temp = temp.S;
         }
@@ -93,8 +91,6 @@ public abstract class GameEntity {
         }
         return temp;
     }
-
-
 
 
 }
