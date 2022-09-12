@@ -1,11 +1,10 @@
 package org.minerslore.mapping;
 
-import org.minerslore.Actors.Actor;
+import org.minerslore.actors.Actor;
 import org.minerslore.GameEntity;
 import org.minerslore.mapitems.*;
 
 import java.awt.*;
-import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.HashMap;

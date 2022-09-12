@@ -1,4 +1,4 @@
-package org.minerslore.Actors;
+package org.minerslore.actors;
 
 import org.minerslore.Main;
 import org.minerslore.stories.Story;
@@ -37,12 +37,11 @@ public class OldMan extends Actor {
     public static void showActions() {
 
     }
-
+    @Override
     public void encounter() throws IOException {
 //        System.out.println(Story.get("STORY"));
         Story oldmanStory = new Story();
         oldmanStory.mainStory();
-
     }
 
 

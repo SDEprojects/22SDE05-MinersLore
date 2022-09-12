@@ -1,10 +1,10 @@
 package org.minerslore.mapitems;
 
-import org.minerslore.Actors.Actor;
+import org.minerslore.actors.Actor;
 
 import java.awt.*;
 
-public class Wall extends Item {
+public class Wall extends Item implements Interactable {
     private static final char SYMBOL = 0x2593;
     private static final String ANSI_YELLOW = "\u001B[33m";
     public static final String ANSI_RESET = "\u001B[0m";
@@ -14,7 +14,7 @@ public class Wall extends Item {
         super(SYMBOL, position, false);
     }
 
-    public static void interact(Actor actor) {
+    public void interact(Actor actor) {
 
         System.out.println(MESSAGE);
     }

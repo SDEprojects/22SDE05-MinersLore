@@ -1,5 +1,6 @@
-package org.minerslore.Actors;
+package org.minerslore.actors;
 
+import org.minerslore.GameEntity;
 import org.minerslore.Main;
 import org.minerslore.mapitems.*;
 import org.yaml.snakeyaml.Yaml;
@@ -16,7 +17,7 @@ public class ActionsDict {
 
     static {
         try {
-            minerObj = Class.forName("org.minerslore.Actors.ActionsDict").getDeclaredConstructor().newInstance();
+            minerObj = Class.forName("org.minerslore.actors.ActionsDict").getDeclaredConstructor().newInstance();
         } catch (InstantiationException | ClassNotFoundException | NoSuchMethodException | RuntimeException |
                  InvocationTargetException | IllegalAccessException e) {
             throw new RuntimeException(e);
@@ -54,12 +55,11 @@ public class ActionsDict {
     }
 
     public static void actionDig(Actor actor) {
-        Item block = (Item) actor.getOn_Block();
-        if (block instanceof CavePath && block.isPath()) {
-            ((CavePath)block).interact(actor);
-        } else if (block instanceof Jewel && block.isPath()) {
-            ((Jewel)block).interact(actor);
-        }
+
+        Interactable block = (Item) actor.getOn_Block();
+        block.interact(actor);
+
+
     }
 
     public static void actorActions(Actor actor, char ch) throws InvocationTargetException, IllegalAccessException, NoSuchMethodException {
