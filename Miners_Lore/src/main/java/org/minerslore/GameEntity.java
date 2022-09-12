@@ -1,5 +1,7 @@
 package org.minerslore;
 
+import org.minerslore.actors.Actor;
+
 import java.awt.*;
 
 public abstract class GameEntity {
@@ -91,6 +93,8 @@ public abstract class GameEntity {
         }
         return temp;
     }
+
+
 
 
 }

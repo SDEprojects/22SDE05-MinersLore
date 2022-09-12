@@ -1,10 +1,10 @@
 package org.minerslore.mapitems;
 
-import org.minerslore.Actors.Actor;
+import org.minerslore.actors.Actor;
 
 import java.awt.*;
 
-public class Boundary extends Item {
+public class Boundary extends Item implements Interactable {
     private static final char SYMBOL = ' ';
     private static final String MESSAGE = "You can't walk here";
 
@@ -12,7 +12,7 @@ public class Boundary extends Item {
         super(SYMBOL, position, false);
     }
 
-    public static void interact (Actor actor) {
+    public void interact(Actor actor) {
         System.out.println(MESSAGE);
     }
 
@@ -20,5 +20,7 @@ public class Boundary extends Item {
     public String toString() {
         return String.valueOf(SYMBOL);
     }
+
+
 
 }

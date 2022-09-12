@@ -1,4 +1,4 @@
-package org.minerslore.Actors;
+package org.minerslore.actors;
 
 import java.awt.*;
 

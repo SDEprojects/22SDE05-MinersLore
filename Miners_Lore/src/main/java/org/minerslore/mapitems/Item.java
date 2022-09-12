@@ -1,11 +1,11 @@
 package org.minerslore.mapitems;
 
-import org.minerslore.Actors.Actor;
+import org.minerslore.actors.Actor;
 import org.minerslore.GameEntity;
 
 import java.awt.*;
 
-public class Item extends GameEntity {
+public class Item extends GameEntity implements Interactable {
     private String Attributes;
     private boolean isPath;
 
@@ -23,7 +23,11 @@ public class Item extends GameEntity {
     public void setPath(boolean path) {
         isPath = path;
     }
-    public static void interact(Actor actor) {
 
+
+
+    public void interact(Actor actor) {
+
+        System.out.println();
     }
 }

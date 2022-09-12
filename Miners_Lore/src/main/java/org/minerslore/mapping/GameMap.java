@@ -1,12 +1,13 @@
 package org.minerslore.mapping;
 
-import org.minerslore.Actors.ActionsDict;
-import org.minerslore.Actors.Actor;
-import org.minerslore.Actors.Miner;
-import org.minerslore.Actors.Monster;
-import org.minerslore.Actors.OldMan;
+import org.minerslore.actors.ActionsDict;
+import org.minerslore.actors.Actor;
+import org.minerslore.actors.Miner;
+import org.minerslore.actors.Monster;
+import org.minerslore.actors.OldMan;
 import org.minerslore.GameEntity;
 import org.minerslore.Main;
+import org.minerslore.mapitems.Item;
 import org.yaml.snakeyaml.Yaml;
 
 import java.awt.*;
@@ -38,8 +39,9 @@ public class GameMap {
         int oldManStartX = 97;
         int oldManStartY = 112;
 
-        int monsterStartX = 90;
+        int monsterStartX = 88;
         int monsterStartY = 102;
+
         generateHelpList();
         List<ArrayList<GameEntity>> map = fetchStarterMap();
 
@@ -69,11 +71,11 @@ public class GameMap {
             String row;
             int y = 0;
             ClassLoader cl = Main.class.getClassLoader();
-            java.io.InputStream input = cl.getResourceAsStream("Map.yaml");
+            InputStream input = cl.getResourceAsStream("Map.yaml");
 
             Yaml yaml = new Yaml();
 
-            java.util.Map<String, Object> obj = yaml.load(input);
+            Map<String, Object> obj = yaml.load(input);
             BufferedReader in = new BufferedReader(new StringReader(obj.get("Map1").toString()));
 
             while ((row = in.readLine()) != null) {
@@ -114,6 +116,7 @@ public class GameMap {
                 sb.append(rootX);
                 rootX = rootX.getE();
             }
+
             if (y < helpList.size()) {
                 System.out.println(sb.toString() +"\t\t"+ helpList.get(y));
             }   else if (y == helpList.size() ) {
@@ -146,6 +149,7 @@ public class GameMap {
     }
 
     public static void handleCommand(char userCommand) throws InvocationTargetException, IllegalAccessException, NoSuchMethodException {
+//        ActionsDict.actorActions(monster,monster.move(miner,colSize,rowSize));
         ActionsDict.actorActions(miner,userCommand);
 
     }
@@ -171,8 +175,9 @@ public class GameMap {
     public static void addActorToMap(Actor actor, List<ArrayList<GameEntity>> map) {
         int startx = actor.getX();
         int starty = actor.getY();
-        actor.setOriginal_symbol(map.get(starty).get(startx));
+        actor.setOriginal_symbol((Item)map.get(starty).get(startx));
         map.get(starty).set(startx, actor);
 
     }
+
 }

@@ -1,6 +1,6 @@
 package org.minerslore.mapitems;
 
-import org.minerslore.Actors.Actor;
+import org.minerslore.actors.Actor;
 import org.minerslore.Main;
 import org.yaml.snakeyaml.Yaml;
 
@@ -8,7 +8,7 @@ import java.awt.*;
 import java.util.Map;
 import java.util.concurrent.ThreadLocalRandom;
 
-public class CavePath extends Item {
+public class CavePath extends Item implements Interactable {
     static Map<String, Object> obj;
 
     private int gold;
@@ -25,7 +25,7 @@ public class CavePath extends Item {
         this.isDug = isDug;
     }
 
-    public static void interact(Actor actor) {
+    public void interact(Actor actor) {
 
         ClassLoader cl = Main.class.getClassLoader();
         java.io.InputStream input = cl.getResourceAsStream("Rand.yaml");

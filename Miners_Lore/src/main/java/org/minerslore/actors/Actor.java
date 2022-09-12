@@ -1,4 +1,4 @@
-package org.minerslore.Actors;
+package org.minerslore.actors;
 
 import org.minerslore.GameEntity;
 import org.minerslore.mapitems.Item;
@@ -6,9 +6,9 @@ import org.minerslore.mapitems.Item;
 import java.awt.*;
 import java.io.IOException;
 
-public class Actor extends GameEntity {
+public class Actor extends GameEntity  {
 
-    private GameEntity on_Block;
+    private Item on_Block;
     private int goldKG;
 
     public Actor(char symbol, Point location) {
@@ -19,7 +19,7 @@ public class Actor extends GameEntity {
         return on_Block;
     }
 
-    public void setOriginal_symbol(GameEntity original_symbol) {
+    public void setOriginal_symbol(Item original_symbol) {
         this.on_Block = original_symbol;
     }
 
@@ -47,7 +47,7 @@ public class Actor extends GameEntity {
 
             // Store next On-Block
 
-            this.on_Block = nextBlock;
+            this.on_Block = (Item) nextBlock;
 
             // Set links from miner to N S E W blocks
             this.setN(nextBlock.getN());
@@ -61,8 +61,8 @@ public class Actor extends GameEntity {
             this.getE().setW(this);
             this.getW().setE(this);
             this.setPosition(nextBlock.getPosition());
-        } else if (nextBlock instanceof OldMan) {
-            ((OldMan) nextBlock).encounter();
+        } else if (nextBlock instanceof Actor) {
+            ((Actor) nextBlock).encounter();
 
         }
 
