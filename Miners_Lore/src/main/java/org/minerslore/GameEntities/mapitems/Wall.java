@@ -1,6 +1,6 @@
-package org.minerslore.mapitems;
+package org.minerslore.GameEntities.mapitems;
 
-import org.minerslore.actors.Actor;
+import org.minerslore.GameEntities.actors.Actor;
 
 import java.awt.*;
 
@@ -14,9 +14,13 @@ public class Wall extends Item implements Interactable {
         super(SYMBOL, position, false);
     }
 
-    public void interact(Actor actor) {
+    public final void interact(Actor actor) {
 
         System.out.println(MESSAGE);
+    }
+
+    public final String inspect() {
+        return MESSAGE;
     }
 
     @Override
@@ -26,7 +30,3 @@ public class Wall extends Item implements Interactable {
 
 
 }
-
-// prev state dirt
-// actor holds the tile they're on
-// rock

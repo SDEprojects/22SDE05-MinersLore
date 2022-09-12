@@ -3,7 +3,7 @@ package org.minerslore.stories;
 import org.minerslore.Main;
 import org.yaml.snakeyaml.Yaml;
 
-import java.io.*;
+import java.io.IOException;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -49,7 +49,7 @@ public class Story {
                 System.exit(0);
                 break;
             default:
-                    System.out.println(obj.get("INVALID")); //TODO: CANNOT FIGURE THIS PART OUT
+                System.out.println(obj.get("INVALID")); //TODO: CANNOT FIGURE THIS PART OUT
         }
     }
 

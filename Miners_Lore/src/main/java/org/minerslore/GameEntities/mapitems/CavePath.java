@@ -1,6 +1,6 @@
-package org.minerslore.mapitems;
+package org.minerslore.GameEntities.mapitems;
 
-import org.minerslore.actors.Actor;
+import org.minerslore.GameEntities.actors.Actor;
 import org.minerslore.Main;
 import org.yaml.snakeyaml.Yaml;
 
@@ -9,16 +9,14 @@ import java.util.Map;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class CavePath extends Item implements Interactable {
-    static Map<String, Object> obj;
-
-    private int gold;
+    private static Map<String, Object> obj;
     private boolean isDug;
     private static final String ANSI_YELLOW = "\u001B[33m";
-    public static final String ANSI_RESET = "\u001B[0m";
+    private static final String ANSI_RESET = "\u001B[0m";
 
 
     private static char SYMBOL = 0x00A4;
-    private static final String MESSAGE = "Path walkable. This path can be mined.";
+    private static final String MESSAGE = "Path walkable. This path can be mined, these tunnels are full of gold.";
 
     public CavePath(Point position, boolean isDug) {
         super(SYMBOL, position, true);
@@ -57,14 +55,21 @@ public class CavePath extends Item implements Interactable {
         CavePath.SYMBOL = SYMBOL;
     }
 
-    public void setDug(){
+    public void setDug() {
         this.isDug = true;
         this.setCurrent_symbol(' ');
-    };
+    }
 
-    public boolean isDug(){
+    ;
+
+    public boolean isDug() {
         return isDug;
     }
+
+    public final String inspect() {
+        return MESSAGE;
+    }
+
 
     @Override
     public String toString() {

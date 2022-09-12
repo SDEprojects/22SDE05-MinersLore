@@ -1,12 +1,12 @@
-package org.minerslore.mapitems;
+package org.minerslore.GameEntities.mapitems;
 
-import org.minerslore.actors.Actor;
+import org.minerslore.GameEntities.actors.Actor;
 
 import java.awt.*;
 
 public class Boundary extends Item implements Interactable {
     private static final char SYMBOL = ' ';
-    private static final String MESSAGE = "You can't walk here";
+    private static final String MESSAGE = "I can seem to pass through this terrain, better find another way.";
 
     public Boundary(Point position) {
         super(SYMBOL, position, false);
@@ -16,11 +16,14 @@ public class Boundary extends Item implements Interactable {
         System.out.println(MESSAGE);
     }
 
+    public final String inspect() {
+        return MESSAGE;
+    }
+
     @Override
     public String toString() {
         return String.valueOf(SYMBOL);
     }
-
 
 
 }

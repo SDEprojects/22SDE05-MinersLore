@@ -1,13 +1,14 @@
-package org.minerslore.mapitems;
+package org.minerslore.GameEntities.mapitems;
 
-import org.minerslore.actors.Actor;
-import org.minerslore.GameEntity;
+import org.minerslore.GameEntities.GameEntity;
+import org.minerslore.GameEntities.actors.Actor;
 
 import java.awt.*;
 
 public class Item extends GameEntity implements Interactable {
     private String Attributes;
     private boolean isPath;
+    private static final String MESSAGE = "Over there is a walkable path.";
 
     public Item(char symbol, Point location, boolean isPath) {
 
@@ -16,18 +17,17 @@ public class Item extends GameEntity implements Interactable {
         this.isPath = isPath;
     }
 
-    public boolean isPath() {
+    public final boolean isPath() {
         return isPath;
     }
-
-    public void setPath(boolean path) {
-        isPath = path;
-    }
-
 
 
     public void interact(Actor actor) {
 
         System.out.println();
+    }
+
+    public String inspect() {
+        return MESSAGE;
     }
 }
