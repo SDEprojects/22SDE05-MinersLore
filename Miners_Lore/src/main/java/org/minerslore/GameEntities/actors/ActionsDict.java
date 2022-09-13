@@ -78,7 +78,7 @@ public class ActionsDict {
     }
 
     public static void GoInstructions(Actor actor) throws InvocationTargetException, IllegalAccessException, NoSuchMethodException {
-        System.out.println("Enter command to Go \nNorth\t->\tE\nSouth\t->\tS\nWest\t->\tA\nEast\t->\tD\nDig\t->\t\tF");
+        System.out.println("Enter command to Go \nNorth\t->\tE\nSouth\t->\tS\nWest\t->\tA\nEast\t->\tD\nDig\t->\tF");
         char inspectCommand = reader.next().toUpperCase().charAt(0);
         actorActions(actor, inspectCommand);
     }

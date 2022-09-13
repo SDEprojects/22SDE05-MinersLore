@@ -3,6 +3,7 @@ package org.minerslore.GameEntities;
 import java.awt.*;
 
 public abstract class GameEntity {
+
     private char current_symbol;
     private Point position;
     private GameEntity N;
@@ -78,7 +79,7 @@ public abstract class GameEntity {
 
     @Override
     public String toString() {
-        return String.valueOf(current_symbol);
+        return String.valueOf(current_symbol) ;
     }
 
     public final GameEntity getByIndex(int x, int y) {

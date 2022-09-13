@@ -16,39 +16,53 @@ public class Monster extends Actor {
         super(SYMBOL, location);
     }
 
+    int direction = 0;
+    int moveCounter = 0;
+    char[] directArrayX = {'D', 'A'};
+    char[] directArrayY = {'S', 'W'};
+
     public char move(Miner miner, int colSize, int rowSize) {
+
         int xDist = Math.abs(miner.getX() - this.getX());
         int yDist = Math.abs(miner.getY() - this.getY());
-        if (xDist + yDist == 1) {
-            return ' ';
+        if (direction==1) {
+            if(moveCounter<50){
+                moveCounter++;
+            } else{
+                direction=0;
+                moveCounter=0;
+            }
+
         }
 
-        if (this.getX() < miner.getX()) {
+        if (xDist + yDist < 3) {
+            if(direction ==0){
+                this.encounter(miner);
+            }
+        }
+      if (this.getX() < miner.getX()) {
             if (xDist < rowSize / 2 && ((Item) this.getE()).isPath() && !(this.getE() instanceof Door)) {
-                return 'D';
-            } else if (Math.abs(miner.getX() - this.getX()) > rowSize / 2 && ((Item) this.getW()).isPath() &&!(this.getW() instanceof Door)) {
-                return 'A';
+                return directArrayX[(0 + direction) % 2];
+            } else if (Math.abs(miner.getX() - this.getX()) > rowSize / 2 && ((Item) this.getW()).isPath() && !(this.getW() instanceof Door)) {
+                return directArrayX[(1 + direction) % 2];
             }
-        }
-        if (this.getX() > miner.getX()) {
-            if (xDist > rowSize / 2 && ((Item) this.getE()).isPath() &&!(this.getE() instanceof Door)) {
-                return 'D';
-            } else if (xDist < rowSize / 2 && ((Item) this.getE()).isPath()&&!(this.getW() instanceof Door)) {
-                return 'A';
+        } else if (this.getX() > miner.getX()) {
+            if (xDist > rowSize / 2 && ((Item) this.getE()).isPath() && !(this.getE() instanceof Door)) {
+                return directArrayX[(0 + direction) % 2];
+            } else if (xDist < rowSize / 2 && ((Item) this.getE()).isPath() && !(this.getW() instanceof Door)) {
+                return directArrayX[(1 + direction) % 2];
             }
-        }
-        if (this.getY() < miner.getY()) {
-            if (yDist < rowSize / 2 && ((Item) this.getS()).isPath()&&!(this.getS() instanceof Door)) {
-                return 'S';
-            } else if (Math.abs(miner.getY() - this.getY()) > rowSize / 2 && ((Item) this.getN()).isPath()&&!(this.getN() instanceof Door)) {
-                return 'W';
+        } else if (this.getY() < miner.getY()) {
+            if (yDist < colSize / 2 && ((Item) this.getS()).isPath() && !(this.getS() instanceof Door)) {
+                return directArrayY[(0 + direction) % 2];
+            } else if (Math.abs(miner.getY() - this.getY()) > rowSize / 2 && ((Item) this.getN()).isPath() && !(this.getN() instanceof Door)) {
+                return directArrayY[(1 + direction) % 2];
             }
-        }
-        if (this.getY() > miner.getY()) {
-            if (yDist > rowSize / 2 && ((Item) this.getS()).isPath()&&!(this.getS() instanceof Door)) {
-                return 'S';
-            } else if (yDist < rowSize / 2 && ((Item) this.getN()).isPath()&&!(this.getN() instanceof Door)) {
-                return 'W';
+        } else if (this.getY() > miner.getY()) {
+            if (yDist > colSize / 2 && ((Item) this.getS()).isPath() && !(this.getS() instanceof Door)) {
+                return directArrayY[(0 + direction) % 2];
+            } else if (yDist < colSize / 2 && ((Item) this.getN()).isPath() && !(this.getN() instanceof Door)) {
+                return directArrayY[(1 + direction) % 2];
             }
         }
 
@@ -56,9 +70,13 @@ public class Monster extends Actor {
         return ' ';
     }
 
-    public void encounter() {
-        System.out.println("Monster Fight");
+    public void encounter(Miner miner) {
+        System.out.println("MONSTER ATTACKS, AND STEALS YOURS GOLD!");
+        miner.resetGoldKG();
+        direction = 1;
     }
+
+
 
     @Override
     public String toString() {

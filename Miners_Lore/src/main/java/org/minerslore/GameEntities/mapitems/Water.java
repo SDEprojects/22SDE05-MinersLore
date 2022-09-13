@@ -25,9 +25,6 @@ public class Water extends Item implements Interactable {
 
     @Override
     public String toString() {
-
         return ANSI_CYAN_BACKGROUND + super.toString() + ANSI_RESET;
     }
-
-
 }

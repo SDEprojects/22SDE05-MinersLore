@@ -6,6 +6,8 @@ import org.minerslore.GameEntities.mapitems.Item;
 import java.awt.*;
 import java.io.IOException;
 
+
+
 public class Actor extends GameEntity implements Encounterable {
 
     private Item on_Block;
@@ -25,6 +27,9 @@ public class Actor extends GameEntity implements Encounterable {
 
     public void setGoldKG(int kg) {
         this.goldKG = this.goldKG + kg;
+    }
+    public void resetGoldKG() {
+        this.goldKG=0;
     }
 
     public void moveActor(GameEntity nextBlock) throws IOException {
@@ -59,13 +64,13 @@ public class Actor extends GameEntity implements Encounterable {
             this.getW().setE(this);
             this.setPosition(nextBlock.getPosition());
         } else if (nextBlock instanceof Encounterable) {
-            ((Encounterable) nextBlock).encounter();
+            ((Encounterable) nextBlock).encounter(this);
 
         }
 
     }
 
-    public void encounter() throws IOException {
+    public void encounter(Actor actor) throws IOException {
         System.out.println("Actor");
 
     }

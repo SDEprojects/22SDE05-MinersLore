@@ -9,10 +9,12 @@ import java.util.Map;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class CavePath extends Item implements Interactable {
+
+    private static final String ANSI_RESET = "\u001B[0m";
     private static Map<String, Object> obj;
     private boolean isDug;
     private static final String ANSI_YELLOW = "\u001B[33m";
-    private static final String ANSI_RESET = "\u001B[0m";
+
 
 
     private static char SYMBOL = 0x00A4;
@@ -73,6 +75,6 @@ public class CavePath extends Item implements Interactable {
 
     @Override
     public String toString() {
-        return ANSI_YELLOW + super.toString() + ANSI_RESET;
+        return ANSI_YELLOW +super.toString() + ANSI_RESET;
     }
 }
