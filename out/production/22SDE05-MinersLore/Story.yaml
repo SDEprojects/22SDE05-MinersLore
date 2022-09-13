@@ -13,9 +13,9 @@ Continue: |
         You think to yourself, what a weird interaction. What was this old guy talking about?
 
 Continue1: |
-    Please choose a number to make your next move
+    Please choose 1, 2 or 3 to make your next move.
         1. Ask the old man what he meant by his sullen words.
-        2. Enter the store to collect your necessities.
+        2. Keep exploring.
         3. Exit the game.
 
 1: |
@@ -33,9 +33,9 @@ Continue1: |
         he limped off into the hot desert.
     
 
-2: Please select items for your adventure.
+2: Keep exploring
 3: GAME OVER! GOODBYE!
 
-INVALID: |
+4: |
     INVALID CHOICE! 
-    Please choose 1, 2 or 3 to continue.
+     

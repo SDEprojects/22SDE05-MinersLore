@@ -3,36 +3,30 @@ package org.minerslore.stories;
 import org.minerslore.Main;
 import org.yaml.snakeyaml.Yaml;
 
-import java.io.*;
 import java.util.Map;
 import java.util.Scanner;
 
 public class Story {
+    private static final Scanner intScanner = new Scanner(System.in); // Scanner that takes int input
+    private static Map<String, Object> obj;
 
-    static Scanner stringScanner = new Scanner(System.in); // Scanner that takes string input
-    public static Scanner intScanner = new Scanner(System.in); // Scanner that takes int input
-    static Map<String, Object> obj;
-
-    public void mainStory() throws IOException {
-
-        ClassLoader cl = Main.class.getClassLoader();
-        java.io.InputStream input = cl.getResourceAsStream("Rand.yaml");
-        Yaml yaml = new Yaml();
-        obj = yaml.load(input);
+    public void mainStory() {
 
         loadSplashYaml();
+
         loadStoryYaml();
 
         System.out.println(obj.get("Continue"));
 
         askQuestions();
+
         int minerDecision = intScanner.nextInt();
 
         playerChoices(minerDecision);
 
     }
 
-    public static void playerChoices(int minerDecision) throws IOException {
+    public static void playerChoices(int minerDecision) {
 
         switch (minerDecision) {
             case 1:
@@ -49,7 +43,10 @@ public class Story {
                 System.exit(0);
                 break;
             default:
-                    System.out.println(obj.get("INVALID")); //TODO: CANNOT FIGURE THIS PART OUT
+                System.out.println(obj.get(4));
+                askQuestions();
+                int minerDecision3 = intScanner.nextInt();
+                playerChoices(minerDecision3);
         }
     }
 
@@ -64,9 +61,7 @@ public class Story {
 
         Yaml yaml = new Yaml();
 
-        Map<String, Object> obj = yaml.load(input);
-
-//        BufferedReader in = new BufferedReader(new StringReader(obj.get("Splash1").toString()));
+        obj = yaml.load(input);
 
         System.out.println(obj.get("Splash1"));
 
@@ -81,7 +76,6 @@ public class Story {
 
         obj = yaml.load(input);
 
-//        BufferedReader in = new BufferedReader(new StringReader(obj.get("STORY").toString()));
         System.out.println(obj.get("Start"));
 
     }

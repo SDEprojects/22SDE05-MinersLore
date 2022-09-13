@@ -1,9 +1,7 @@
 package org.minerslore.mapitems;
 
 import org.minerslore.Actors.Actor;
-import org.minerslore.Main;
 import org.minerslore.stories.PrintStoriesToConsole;
-import org.yaml.snakeyaml.Yaml;
 
 import java.awt.*;
 import java.io.IOException;
@@ -54,6 +52,11 @@ public class CavePath extends Item {
             System.out.println(obj.get(6));
         }
     }
+//    public static void replaceSymbol() {
+//        int randomGoldKG = ThreadLocalRandom.current().nextInt(1, 11);
+//        String s1 = String.valueOf('@');
+//        s1.replace('@', (char) randomGoldKG);//replaces all occurrences of @ to randomGoldKG
+//    }
 
     public static void setSYMBOL(char SYMBOL) {
         CavePath.SYMBOL = SYMBOL;

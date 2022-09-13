@@ -1,25 +1,19 @@
 package org.minerslore;
 
 import org.minerslore.mapping.GameMap;
+import org.minerslore.stories.PrintStoriesToConsole;
 import org.minerslore.stories.Story;
-import org.yaml.snakeyaml.Yaml;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Map;
 import java.util.Scanner;
 
-
 public class Main {
 
     static Map<String, Object> obj;
 
     public static void main(String[] args) throws IOException, InvocationTargetException, IllegalAccessException, NoSuchMethodException {
-
-        ClassLoader cl = Main.class.getClassLoader();
-        java.io.InputStream input = cl.getResourceAsStream("Rand.yaml");
-        Yaml yaml = new Yaml();
-        obj = yaml.load(input);
 
         Story.loadSplashYaml();
 //        ArrayList<Interact_Objects> mapObjectList=new ArrayList<Interact_Objects>();
@@ -28,16 +22,17 @@ public class Main {
 //        System.out.println(mapObjectList);
         GameMap map = new GameMap();
 
-
         Scanner reader = new Scanner(System.in);  // Reading from System.in
 
         char command = ' ';
-        while (command!='Q') {
+        while (command != 'Q') {
 
             map.displayMap();
 
-            System.out.println("Enter");
-            command=reader.next().toUpperCase().charAt(0);
+            obj = PrintStoriesToConsole.parseYaml();
+            System.out.println(obj.get(7));
+
+            command = reader.next().toUpperCase().charAt(0);
             // Clear Screen
             clearConsole();
             map.handleCommand(command);
