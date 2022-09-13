@@ -36,10 +36,35 @@ public class GenerateGameMap {
         Miner miner = new Miner('M', new Point(minerStartX, minerStartY));
         addActorToMap(miner, map);
 
-        int monsterStartX = 88;
+        int monsterStartX = 40;
         int monsterStartY = 102;
         Monster monster = new Monster('!', new Point(monsterStartX, monsterStartY));
         addActorToMap(monster, map);
+
+        monsterStartX = 92;
+        monsterStartY = 95;
+        Monster monster2 = new Monster('!', new Point(monsterStartX, monsterStartY));
+        addActorToMap(monster2, map);
+
+        monsterStartX = 1;
+        monsterStartY = 2;
+        Monster monster3 = new Monster('!', new Point(monsterStartX, monsterStartY));
+        addActorToMap(monster3, map);
+
+        monsterStartX = 2;
+        monsterStartY = 90;
+        Monster monster4 = new Monster('!', new Point(monsterStartX, monsterStartY));
+        addActorToMap(monster4, map);
+
+        monsterStartX = 54;
+        monsterStartY = 2;
+        Monster monster5 = new Monster('!', new Point(monsterStartX, monsterStartY));
+        addActorToMap(monster5, map);
+
+        monsterStartX = 98;
+        monsterStartY = 2;
+        Monster monster6 = new Monster('!', new Point(monsterStartX, monsterStartY));
+        addActorToMap(monster6, map);
 
         int oldManStartX = 97;
         int oldManStartY = 112;
@@ -51,6 +76,12 @@ public class GenerateGameMap {
         actionMap.setHelpList(generateHelpList());
         actionMap.setMiner(miner);
         actionMap.setMonster(monster);
+        actionMap.addMonsterToList(monster);
+        actionMap.addMonsterToList(monster2);
+        actionMap.addMonsterToList(monster3);
+        actionMap.addMonsterToList(monster4);
+        actionMap.addMonsterToList(monster5);
+        actionMap.addMonsterToList(monster6);
         actionMap.setColSize(mapSize.get("colSize"));
         actionMap.setRowSize(mapSize.get("rowSize"));
         actionMap.setMinersEquipment(generateEquipmentList());

@@ -20,13 +20,13 @@ public abstract class GameEntity {
         return this.position.x;
     }
 
-    ;
+
 
     public final int getY() {
         return this.position.y;
     }
 
-    ;
+
 
     public final char getSymbol() {
         return this.current_symbol;

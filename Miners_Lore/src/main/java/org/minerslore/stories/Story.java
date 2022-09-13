@@ -136,10 +136,13 @@ public class Story {
     }
 
     public static void OldManStory(){
-        for(Object each : map2.values()){
-            System.out.println(each);
-            char next=reader.next().toUpperCase().charAt(0);
-        }
+
+        System.out.println(map2.get("Start"));
+        char next=reader.next().toUpperCase().charAt(0);
+        System.out.println(map2.get("Continue"));
+       next=reader.next().toUpperCase().charAt(0);
+        System.out.println(map2.get("Continue1"));
+        next=reader.next().toUpperCase().charAt(0);
     }
 
 

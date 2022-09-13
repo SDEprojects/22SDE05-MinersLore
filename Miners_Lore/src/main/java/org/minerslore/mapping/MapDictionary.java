@@ -60,7 +60,8 @@ public class MapDictionary {
     }
 
     public final static void charToBoundaryAddToMap(ArrayList<GameEntity> mapObjectList, Point point, char ch) {
-        ((ArrayList<GameEntity>) mapObjectList).add(new Boundary(point));
+//        ((ArrayList<GameEntity>) mapObjectList).add(new Boundary(point));
+        ((ArrayList<GameEntity>) mapObjectList).add(new Path(point));
     }
 
     public final static void charToJewelAddToMap(ArrayList<GameEntity> mapObjectList, Point point, char ch) {

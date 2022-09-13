@@ -24,14 +24,15 @@ public class actionMap {
     private static List<String> helpList;
     private static Miner miner;
     private static Monster monster;
-    private static List<Monster> monsterList;
+
+    private static List<Monster> monsterList= new ArrayList<>();
     private static int colSize;
     private static int rowSize;
     private static Map<String, Object> minersEquipment;
     private static final Scanner reader = new Scanner(System.in);
     private static boolean continueMonster = true;
     static boolean displayMethodInUse = false;
-    static ExecutorService executor = Executors.newFixedThreadPool(2);
+    static ExecutorService executor = Executors.newFixedThreadPool(7);
 
     public static void setMapVar() {
         new GenerateGameMap();
@@ -50,9 +51,42 @@ public class actionMap {
                 return null;
             }
         };
+        Callable<Void> callable3 = new Callable<Void>() {
+            @Override
+            public Void call() throws Exception {
+                monsterRun2();
+                return null;
+            }
+        };
+        Callable<Void> callable4 = new Callable<Void>() {
+            @Override
+            public Void call() throws Exception {
+                monsterRun3();
+                return null;
+            }
+        };
+        Callable<Void> callable5 = new Callable<Void>() {
+            @Override
+            public Void call() throws Exception {
+                monsterRun4();
+                return null;
+            }
+        };
+
+        Callable<Void> callable6 = new Callable<Void>() {
+            @Override
+            public Void call() throws Exception {
+                monsterRun5();
+                return null;
+            }
+        };
         List<Callable<Void>> taskList = new ArrayList<Callable<Void>>();
         taskList.add(callable1);
         taskList.add(callable2);
+        taskList.add(callable3);
+        taskList.add(callable4);
+        taskList.add(callable5);
+        taskList.add(callable6);
 
         try {
             //start the threads and wait for them to finish
@@ -64,6 +98,10 @@ public class actionMap {
 
     public static final void setHelpList(List<String> helpList) {
         actionMap.helpList = helpList;
+    }
+    public static final void addMonsterToList(Monster mon){
+
+        monsterList.add(mon);
     }
 
     public static final void setMonster(Monster monster) {
@@ -152,8 +190,76 @@ public class actionMap {
         while (controlMonster()) {
             int xDist = Math.abs(miner.getX() - monster.getX());
             int yDist = Math.abs(miner.getY() - monster.getY());
-            Thread.sleep(1L * 900L);
+            Thread.sleep(1L * 500L);
             actorActions(monster, monster.move(miner, colSize, rowSize));
+            if (xDist + yDist < 10) {
+                if (!displayMethodInUse) {
+                    clearConsole();
+                    displayMap();
+                    System.out.println("Enter");
+                }
+            }
+        }
+    }
+
+    public static void monsterRun2() throws InterruptedException, InvocationTargetException, IllegalAccessException, NoSuchMethodException {
+
+        while (controlMonster()) {
+            int xDist = Math.abs(miner.getX() - monsterList.get(1).getX());
+            int yDist = Math.abs(miner.getY() - monsterList.get(1).getY());
+            Thread.sleep(1L * 500L);
+            actorActions(monsterList.get(1), monsterList.get(1).move(miner, colSize, rowSize));
+            if (xDist + yDist < 10) {
+                if (!displayMethodInUse) {
+                    clearConsole();
+                    displayMap();
+                    System.out.println("Enter");
+                }
+            }
+        }
+    }
+
+    public static void monsterRun3() throws InterruptedException, InvocationTargetException, IllegalAccessException, NoSuchMethodException {
+
+        while (controlMonster()) {
+            int xDist = Math.abs(miner.getX() - monsterList.get(2).getX());
+            int yDist = Math.abs(miner.getY() - monsterList.get(2).getY());
+            Thread.sleep(1L * 500L);
+            actorActions(monsterList.get(2), monsterList.get(2).move(miner, colSize, rowSize));
+            if (xDist + yDist < 10) {
+                if (!displayMethodInUse) {
+                    clearConsole();
+                    displayMap();
+                    System.out.println("Enter");
+                }
+            }
+        }
+    }
+
+    public static void monsterRun4() throws InterruptedException, InvocationTargetException, IllegalAccessException, NoSuchMethodException {
+
+        while (controlMonster()) {
+            int xDist = Math.abs(miner.getX() - monsterList.get(3).getX());
+            int yDist = Math.abs(miner.getY() - monsterList.get(3).getY());
+            Thread.sleep(1L * 500L);
+            actorActions(monsterList.get(3), monsterList.get(3).move(miner, colSize, rowSize));
+            if (xDist + yDist < 10) {
+                if (!displayMethodInUse) {
+                    clearConsole();
+                    displayMap();
+                    System.out.println("Enter");
+                }
+            }
+        }
+    }
+
+    public static void monsterRun5() throws InterruptedException, InvocationTargetException, IllegalAccessException, NoSuchMethodException {
+
+        while (controlMonster()) {
+            int xDist = Math.abs(miner.getX() - monsterList.get(4).getX());
+            int yDist = Math.abs(miner.getY() - monsterList.get(4).getY());
+            Thread.sleep(1L * 500L);
+            actorActions(monsterList.get(4), monsterList.get(4).move(miner, colSize, rowSize));
             if (xDist + yDist < 10) {
                 if (!displayMethodInUse) {
                     clearConsole();

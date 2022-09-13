@@ -71,7 +71,7 @@ public class Actor extends GameEntity implements Encounterable {
     }
 
     public void encounter(Actor actor) throws IOException {
-        System.out.println("Actor");
+
 
     }
 
