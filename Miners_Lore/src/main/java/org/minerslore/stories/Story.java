@@ -1,4 +1,4 @@
-package org.minerslore.stories;//package org.minerslore.stories;
+//package org.minerslore.stories;//package org.minerslore.stories;
 //
 //import org.minerslore.Main;
 //import org.yaml.snakeyaml.Yaml;
@@ -89,62 +89,131 @@ package org.minerslore.stories;//package org.minerslore.stories;
 //}
 
 
-import org.minerslore.Main;
+//import org.minerslore.Main;
+//import org.minerslore.Main;
+//import org.yaml.snakeyaml.Yaml;
+//import java.io.*;
+//import java.util.Map;
+//import java.util.Scanner;
+//public class Story {
+//    private static final Scanner reader = new Scanner(System.in);
+//
+//    public static String splash;
+//    public static String start;
+//    public static String continue1;
+//    public static String continue2;
+//    public static String questions;
+//    public static String selectItems;
+//    public static String gameOver;
+//    public static String invalid;
+//
+//    static Map<String, Object> map;
+//    static Map<String, Object> map2;
+//
+//    // make ctr
+//    static {
+//        ClassLoader cl = Main.class.getClassLoader();
+//        java.io.InputStream splashYaml = cl.getResourceAsStream("Splash.yaml");
+//        java.io.InputStream storyYAML = cl.getResourceAsStream("Story.yaml");
+//        Yaml yaml = new Yaml();
+//        map = yaml.load(splashYaml);
+//        map2 = yaml.load(storyYAML);
+//        splash = map.get("Splash1").toString();
+//        start = map2.get("Start").toString();
+//        continue1 = map2.get("Continue").toString();
+//        continue2 = map2.get("Continue1").toString();
+//        questions = map2.get(1).toString();
+//        selectItems = map2.get(2).toString();
+//        gameOver = map2.get(3).toString();
+//        invalid = map2.get("INVALID").toString();
+//
+//    }
+//
+//    public static void BeginStory(){
+//        printToConsole(splash);
+//        System.out.println("Press any key to continue.");
+//        char next=reader.next().toUpperCase().charAt(0);
+//    }
+//
+//    public static void OldManStory(){
+//        for(Object each : map2.values()){
+//            System.out.println(each);
+//            char next=reader.next().toUpperCase().charAt(0);
+//        }
+//    }
+//
+//
+//    public static void printToConsole(String story){
+//        System.out.println(story);
+//
+//    }
+//}
+
+package org.minerslore.stories;
 import org.minerslore.Main;
 import org.yaml.snakeyaml.Yaml;
-import java.io.*;
 import java.util.Map;
 import java.util.Scanner;
+
 public class Story {
-    private static final Scanner reader = new Scanner(System.in);
-
     public static String splash;
-    public static String start;
-    public static String continue1;
-    public static String continue2;
-    public static String questions;
-    public static String selectItems;
-    public static String gameOver;
-    public static String invalid;
+    public static Map<String, Object> splashMap;
+    public static Map<String, Object> storyMap;
+    public static Map<String, Object> randMap;
 
-    static Map<String, Object> map;
-    static Map<String, Object> map2;
-
-    // make ctr
     static {
         ClassLoader cl = Main.class.getClassLoader();
+        Yaml yaml = new Yaml();
+
         java.io.InputStream splashYaml = cl.getResourceAsStream("Splash.yaml");
         java.io.InputStream storyYAML = cl.getResourceAsStream("Story.yaml");
-        Yaml yaml = new Yaml();
-        map = yaml.load(splashYaml);
-        map2 = yaml.load(storyYAML);
-        splash = map.get("Splash1").toString();
-        start = map2.get("Start").toString();
-        continue1 = map2.get("Continue").toString();
-        continue2 = map2.get("Continue1").toString();
-        questions = map2.get(1).toString();
-        selectItems = map2.get(2).toString();
-        gameOver = map2.get(3).toString();
-        invalid = map2.get("INVALID").toString();
+        java.io.InputStream randYAML = cl.getResourceAsStream("Rand.yaml");
 
+        splashMap = yaml.load(splashYaml);
+        storyMap = yaml.load(storyYAML);
+        randMap = yaml.load(randYAML);
     }
 
-    public static void BeginStory(){
-        printToConsole(splash);
-        System.out.println("Press any key to continue.");
-        char next=reader.next().toUpperCase().charAt(0);
+    public static void mainStory() {
+        System.out.println(storyMap.get("Continue"));
+        System.out.println(storyMap.get("Continue1"));
+        int minerDecision = getUserResponse();
+        playerChoices(minerDecision);
     }
 
-    public static void OldManStory(){
-        for(Object each : map2.values()){
-            System.out.println(each);
-            char next=reader.next().toUpperCase().charAt(0);
+    public static int getUserResponse() {
+        Scanner userInput = new Scanner(System.in);
+        while (!userInput.hasNextInt()) {
+            System.out.println("Input is not a number.");
+            System.out.println(storyMap.get("Continue1"));
+            userInput.nextLine();
+            if (userInput.hasNextInt()){
+                playerChoices(userInput.nextInt());
+            }
+        }
+        return userInput.nextInt();
+    }
+
+    public static void playerChoices(int minerDecision) {
+
+        switch (minerDecision) {
+            case 1:
+                System.out.println(storyMap.get(1));
+                System.out.println(storyMap.get("Continue1"));
+                int minerDecision2 = getUserResponse();
+                playerChoices(minerDecision2);
+                break;
+            case 2:
+                System.out.println(storyMap.get(2));
+                break;
+            case 3:
+                System.out.println(storyMap.get(3));
+                System.exit(0);
+                break;
+            default:
+                System.out.println(storyMap.get("INVALID")); //TODO: CANNOT FIGURE THIS PART OUT
+                break;
         }
     }
 
-
-    public static void printToConsole(String story){
-        System.out.println(story);
-
-    }
 }
