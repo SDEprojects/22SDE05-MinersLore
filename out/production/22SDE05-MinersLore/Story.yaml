@@ -1,24 +1,22 @@
 STORY: |
 
+STORY: |
 Start: |
     --------------------------------------------------------------------------------------------------
     Narrator: 
         You approach the mine store and see an old, decrepit man leaning against the entrance
         You try to step past him but he stops you by blocking you with his cane.
-
 Continue: |
     Old Man:
         Turn around now and save yourself. 
     
     Narrator:
         You think to yourself, what a weird interaction. What was this old guy talking about?
-
 Continue1: |
     Please choose a number to make your next move
         1. Ask the old man what he meant by his sullen words.
-        2. Enter the store to collect your necessities.
+        2. Keep exploring.
         3. Exit the game.
-
 1: |
     Miner: 
         Hey what did you mean by "save yourself"?
@@ -32,9 +30,9 @@ Continue1: |
     Narrator/Old Man: 
         The old man let out a creepy laugh and said you'll be sorry you ever came here. No more questions he said before
         he limped off into the hot desert.
-    
 
-2: Please select items for your adventure.
+
+2: Keep exploring.
 3: GAME OVER! GOODBYE!
 
 INVALID: |
