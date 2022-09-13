@@ -107,14 +107,17 @@ public class Story {
     public static String gameOver;
     public static String invalid;
 
+    static Map<String, Object> map;
+    static Map<String, Object> map2;
+
     // make ctr
     static {
         ClassLoader cl = Main.class.getClassLoader();
         java.io.InputStream splashYaml = cl.getResourceAsStream("Splash.yaml");
         java.io.InputStream storyYAML = cl.getResourceAsStream("Story.yaml");
         Yaml yaml = new Yaml();
-        Map<String, Object> map = yaml.load(splashYaml);
-        Map<String, Object> map2 = yaml.load(storyYAML);
+        map = yaml.load(splashYaml);
+        map2 = yaml.load(storyYAML);
         splash = map.get("Splash1").toString();
         start = map2.get("Start").toString();
         continue1 = map2.get("Continue").toString();
@@ -130,6 +133,13 @@ public class Story {
         printToConsole(splash);
         System.out.println("Press any key to continue.");
         char next=reader.next().toUpperCase().charAt(0);
+    }
+
+    public static void OldManStory(){
+        for(Object each : map2.values()){
+            System.out.println(each);
+            char next=reader.next().toUpperCase().charAt(0);
+        }
     }
 
 

@@ -7,14 +7,13 @@ import java.util.Scanner;
 import java.lang.Thread;
 
 
-public class Main  {
-
+public class Main  { ;
 
     private static final Scanner reader = new Scanner(System.in);
 
     public static void main(String[] args) throws Exception  {
 
-
+        Story.OldManStory();
         Story.BeginStory();
 
         actionMap.setMapVar();

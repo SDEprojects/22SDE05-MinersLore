@@ -28,11 +28,11 @@ public class Monster extends Actor {
         if (direction==1) {
             if(moveCounter<50){
                 moveCounter++;
-            }
-            else{
+            } else{
                 direction=0;
                 moveCounter=0;
             }
+
         }
 
         if (xDist + yDist < 3) {
@@ -72,13 +72,11 @@ public class Monster extends Actor {
 
     public void encounter(Miner miner) {
         System.out.println("MONSTER ATTACKS, AND STEALS YOURS GOLD!");
-        miner.setGoldKG(0);
+        miner.resetGoldKG();
         direction = 1;
     }
 
-    public void runMonster() {
 
-    }
 
     @Override
     public String toString() {

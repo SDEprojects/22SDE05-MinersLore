@@ -28,6 +28,9 @@ public class Actor extends GameEntity implements Encounterable {
     public void setGoldKG(int kg) {
         this.goldKG = this.goldKG + kg;
     }
+    public void resetGoldKG() {
+        this.goldKG=0;
+    }
 
     public void moveActor(GameEntity nextBlock) throws IOException {
         if (nextBlock instanceof Item && ((Item) nextBlock).isPath()) {
