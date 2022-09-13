@@ -36,7 +36,7 @@ public class OldMan extends Actor implements Encounterable {
 
     public void encounter(Actor actor) throws IOException {
 
-        Story.OldManStory();
+        Story.mainStory();
 
     }
 

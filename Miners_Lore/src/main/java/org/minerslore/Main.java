@@ -13,8 +13,8 @@ public class Main  { ;
 
     public static void main(String[] args) throws Exception  {
 
-
-        Story.BeginStory();
+        String splash = Story.splashMap.get("Splash1").toString();
+        System.out.println(splash);
 
         actionMap.setMapVar();
 
