@@ -13,7 +13,7 @@ public class Main  { ;
 
     public static void main(String[] args) throws Exception  {
 
-        Story.OldManStory();
+
         Story.BeginStory();
 
         actionMap.setMapVar();

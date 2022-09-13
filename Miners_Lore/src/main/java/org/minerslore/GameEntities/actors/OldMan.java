@@ -13,20 +13,15 @@ public class OldMan extends Actor implements Encounterable {
     private static final String ANSI_RESET = "\u001B[0m";
     private static final char SYMBOL = 0x00F6;
     private static final String MESSAGE = "Old man";
-    private static Map<String, Object> Story;
+//    private static Map<String, Object> Story;
 
 
     public OldMan(char symbol, Point location) {
 
 
         super(SYMBOL, location);
-        ClassLoader cl = Main.class.getClassLoader();
-        java.io.InputStream input = cl.getResourceAsStream("Story.yaml");
 
 
-        Yaml yaml = new Yaml();
-
-        Story = yaml.load(input);
 
     }
 
@@ -40,8 +35,9 @@ public class OldMan extends Actor implements Encounterable {
     }
 
     public void encounter(Actor actor) throws IOException {
-        Story oldmanStory = new Story();
-//        oldmanStory.mainStory();
+
+        Story.OldManStory();
+
     }
 
     @Override
