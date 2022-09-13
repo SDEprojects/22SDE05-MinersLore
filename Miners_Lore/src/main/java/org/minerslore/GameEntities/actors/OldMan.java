@@ -39,9 +39,9 @@ public class OldMan extends Actor implements Encounterable {
 
     }
 
-    public void encounter() throws IOException {
+    public void encounter(Actor actor) throws IOException {
         Story oldmanStory = new Story();
-        oldmanStory.mainStory();
+//        oldmanStory.mainStory();
     }
 
     @Override

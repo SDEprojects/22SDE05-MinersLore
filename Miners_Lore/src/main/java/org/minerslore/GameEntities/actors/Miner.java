@@ -12,15 +12,8 @@ public class Miner extends Actor implements Encounterable {
         super(SYMBOL, location);
     }
 
-    public static void showInventory() {
 
-    }
-
-    public static void showActions() {
-
-    }
-
-    public void encounter() {
+    public void encounter(Actor actor) {
 
     }
 

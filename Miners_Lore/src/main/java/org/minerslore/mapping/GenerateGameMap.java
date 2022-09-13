@@ -130,7 +130,7 @@ public class GenerateGameMap {
 
         Map<String, Object> tempHelp = yaml.load(streamMapYaml);
 
-        return (Map<String, Object>) tempHelp.get("Equipment");
+        return (Map<String, Object>) tempHelp.get("Inventory");
 
     }
 

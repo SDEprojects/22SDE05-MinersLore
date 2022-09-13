@@ -1,17 +1,17 @@
 Help:
-   - . . . . . . . . . . . . . . . . . . . .
-   - . Go North  -> W            5         .
-   - . Go South  -> S           )^(        .
-   - . Go West   -> A         )  |  (      .
-   - . Go East   -> D       W----O----E    .
-   - .                        )  |  (      .
-   - . Mine Gold -> G           )|(        .
-   - .                           S         .
+   -              . . . . . . . . . . . . . . . . . . . .
+   -              .         5                           .
+   -              .        )^(                          .
+   -              .      )  |  (                        .
+   -              .    W----O----E                      .
+   -              .      )  |  (                        .
+   -              .        )|(           Inspect  -> I  .
+   -              .         S            Go       -> G  .
+   -              . . . . . . . . . . . . . . . . . . . .
 
-Gold: 0
-Equipment:
-   Inventory: Current
+Inventory:
+   Gold: 0
    Keys: 1
    Sword: _
-   Pickaxe: _
+   Pickaxe: 1
    FlashLight: _
